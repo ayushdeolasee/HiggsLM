@@ -9,7 +9,7 @@ import logging
 import inspect
 from rich import print
 from rich.logging import RichHandler
-import click
+import wandb
 
 FORMAT = "%(message)s"
 logging.basicConfig(
@@ -26,12 +26,25 @@ elif torch.backends.mps.is_available():
 
 print(f"[green]Using device: {device}[/green] :smile: ")
 
+# Hyperparameters
+BATCH_SIZE = 8
+BLOCK_SIZE = 1024
+EPOCHS = 19073
+LEARNING_RATE = 3e-4
+MAX_STEPS = 19073
+WARMUP_STEPS = 750
+MAX_LR = 3e-4
+MIN_LR = 3e-5
+DATA_ROOT = "data"
+GRAD_ACCUM_STEPS = 8
+VOCAB_SIZE = 50304
+WEIGHT_DECAY = 0.01
+
 def load_tokens(filename):
     npt = np.load(filename)
     npt = npt.astype(np.int32)
     ptt = torch.tensor(npt, dtype=torch.long)
     return ptt
-
 
 class DataLoaderLite:
     def __init__(self, B, T, split, data_root):
@@ -84,31 +97,76 @@ class RMSNorm(nn.Module):
         output = (output * self.g) + self.b
         return output 
 
-# TODO: Review implementation of CausalSelfAttention
-class CausalSelfAttention(nn.Module):
-    def __init__(self, n_embed, n_head):
+class RotaryPositionEmbedding(nn.Module):
+    def __init__(self, dim, max_seq_length=2048, base=10000):
+        super().__init__()
+        self.dim = dim
+        self.max_seq_length = max_seq_length
+        self.base = base
+        inv_freq = 1.0 / (base ** (torch.arange(0, dim, 2).float() / dim))
+        position = torch.arange(max_seq_length).float()
+        freqs = torch.einsum('i,j->ij', position, inv_freq)
+        self.register_buffer('cos_cached', torch.cos(freqs), persistent=False)
+        self.register_buffer('sin_cached', torch.sin(freqs), persistent=False)
+    
+    def forward(self, x):
+        seq_len = x.size(-2)
+        cos = self.cos_cached[:seq_len]
+        sin = self.sin_cached[:seq_len]
+        x_rotated = self.apply_rotary_pos_emb(x, cos, sin)
+        return x_rotated
+    
+    def apply_rotary_pos_emb(self, x, cos, sin):
+        x1 = x[..., ::2]
+        x2 = x[..., 1::2]
+        cos = cos.unsqueeze(0).unsqueeze(0)
+        sin = sin.unsqueeze(0).unsqueeze(0)
+        x1_rotated = x1 * cos - x2 * sin
+        x2_rotated = x1 * sin + x2 * cos
+        x_rotated = torch.stack([x1_rotated, x2_rotated], dim=-1)
+        x_rotated = x_rotated.flatten(start_dim=-2)
+        return x_rotated
+
+class GroupedQueryAttention(nn.Module):
+    def __init__(self, n_embed, n_head, kv_per_head, eps=1e-6):
         super().__init__()
         self.n_embd = n_embed
         self.n_head = n_head
-        # key, query, value projections for all heads, but in a batch
-        self.c_attn = nn.Linear(self.n_embd, 3 * self.n_embd)
-        # output projection
+        self.kv_per_head = kv_per_head
+        self.n_groups = self.n_head // self.kv_per_head
+        self.eps = eps
+
+        self.keys = nn.Linear(self.n_embd, (self.n_embd // self.n_head) * self.n_groups)
+        self.values = nn.Linear(self.n_embd, (self.n_embd // self.n_head) * self.n_groups) 
+        self.quries = nn.Linear(self.n_embd, self.n_embd) 
+
         self.c_proj = nn.Linear(self.n_embd, self.n_embd)
         self.c_proj.NANOGPT_SCALE_INIT = 1
+        self.rope = RotaryPositionEmbedding(self.n_embd // self.n_head, self.seq_length)
 
     def forward(self, x):
         B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
-        # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-        # nh is "number of heads", hs is "head size", and C (number of channels) = nh * hs
-        # e.g. in GPT-2 (124M), n_head=12, hs=64, so nh*hs=C=768 channels in the Transformer
-        qkv = self.c_attn(x)
-        q, k, v = qkv.split(self.n_embd, dim=2)
-        k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        keys = self.keys(x)
+        values = self.values(x)
+        quries = self.quries(x)
+
+        # Batch size, number of heads, sequence lenght, head size
+        k = keys.view(B, T, self.n_groups, C // self.n_head).transpose(1, 2).repeat_interleave(self.kv_per_head, dim=1)# (B, nh, T, hs)
+        v = values.view(B, T, self.n_groups, C // self.n_head).transpose(1, 2).repeat_interleave(self.kv_per_head, dim=1) # (B, nh, T, hs)
+        q = quries.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        q_norm = torch.norm(q, dim=-1, keepdim=True)  
+        k_norm = torch.norm(k, dim=-1, keepdim=True)
+        q_hat = q / (q_norm + self.eps)
+        k_hat = k / (k_norm + self.eps)
+
+        factor = self.alpha * math.sqrt(C // self.n_head)
+        factor = factor.view(1, self.n_head, 1, 1)
+        q_scaled = q_hat * factor
+        q = self.rope(q_scaled)
+        k = self.rope(k_hat)
+
         y = F.scaled_dot_product_attention(q, k, v, is_causal=True) # flash attention
         y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
-        # output projection
         y = self.c_proj(y)
         return y
 
@@ -152,7 +210,6 @@ class Model1(nn.Module):
         self.dropout = dropout
 
         self.embedding = nn.Embedding(self.vocab_size, self.embed_dim)
-        self.positional_embedding = nn.Embedding(self.block_size, self.embed_dim)
 
         self.blocks = nn.ModuleList([Block(self.embed_dim, self.num_heads, self.dropout) for _ in range(self.num_blocks)])
 
@@ -179,7 +236,6 @@ class Model1(nn.Module):
     def forward(self, x):
         B, T = x.shape
         x = self.embedding(x)
-        x = x + self.positional_embedding(torch.arange(T, device=device))
         for block in self.blocks:
             x = block(x)
         output = self.rmsnrom3(x)
@@ -198,15 +254,54 @@ def get_lr(it, warmup_steps, max_lr, max_steps, min_lr):
     return min_lr + coeff * (max_lr - min_lr)
 
 def train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, data_root, grad_accum_steps, vocab_size, weight_decay, min_lr):
+    # Initialize wandb
+    config = {
+        "batch_size": batch_size,
+        "block_size": block_size,
+        "epochs": epochs,
+        "learning_rate": lr,
+        "max_steps": max_steps,
+        "warmup_steps": warmup_steps,
+        "max_lr": max_lr,
+        "min_lr": min_lr,
+        "data_root": data_root,
+        "grad_accum_steps": grad_accum_steps,
+        "vocab_size": vocab_size,
+        "weight_decay": weight_decay,
+        "embed_dim": 1024,
+        "num_heads": 16,
+        "num_blocks": 8,
+        "dropout": 0.2
+    }
+    
+    wandb.init(
+        project="fineweb-gpt2-training",
+        name="gpt2-standard-training",
+        config=config,
+        tags=["gpt2", "transformer", "standard"]
+    )
+    
     train_dataloader = DataLoaderLite(B=batch_size, T=block_size, split="train", data_root=data_root)
     val_dataloader = DataLoaderLite(B=batch_size, T=block_size, split="val", data_root=data_root)
 
     model = Model1(block_size=block_size, vocab_size=vocab_size, embed_dim=1024, num_heads=16, num_blocks=8, dropout=0.2).to(device)
+    
+    # Log model parameters count
+    total_params = sum(p.numel() for p in model.parameters())
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    wandb.config.update({
+        "total_parameters": total_params,
+        "trainable_parameters": trainable_params
+    })
+    
     if device == "mps":
         pass
     else:
         model = torch.compile(model)
         print("[green]Using compiled model[/green]")
+
+    # Watch model for gradient tracking
+    wandb.watch(model, log="all", log_freq=100)
 
     param_dict = [p for p in model.parameters()]
     param_dict = [p for p in param_dict if p.requires_grad]
@@ -217,11 +312,19 @@ def train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, d
         {'params': nodecay_params, 'weight_decay': 0.0}
     ]
 
-    fused_available = 'fused' in inspect.signature(torch.optim.AdamW).parameters
-    use_fused = fused_available and device == "cuda"
-    optimizer = torch.optim.AdamW(optim_groups, lr=lr, fused=use_fused)
-    print("[green]Using fused AdamW optimizer[/green]")
+    hidden_weights = [p for p in model.blocks.parameters() if p.ndim >= 2]
+    hidden_gains_biases = [p for p in model.blocks.parameters() if p.ndim < 2]
+    nonhidden_params = [*model.lm_linear.parameters(), *model.embedding.parameters()]
+    param_groups = [
+        dict(params=hidden_weights, use_muon=True,
+         lr=0.02, weight_decay=0.01),
+        dict(params=hidden_gains_biases+nonhidden_params, use_muon=False,
+         lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01),
+    ]
+    optimizer = SingleDeviceMuonWithAuxAdam(param_groups) 
+
     loss = nn.CrossEntropyLoss()
+    
     for epoch in range(epochs):
         optimizer.zero_grad()
         loss_acum = 0.0
@@ -248,15 +351,17 @@ def train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, d
             with torch.autocast(device_type=device, dtype=torch.bfloat16):
                 output = model(x)
                 val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
-        
-        if os.path.exists("logs"):
-            pass
-        else:
-            print("[yellow]creating a logs directory[/yellow]") 
-            os.mkdir("logs")
 
-        with open("logs/log.txt", 'a') as fd:
-            fd.write(f"Epoch: {epoch}| Train Loss: {loss_acum.item()} | Val Loss: {val_loss.item()} | Norm: {norm} | lr: {lr}\n")
+        # Log to wandb
+        wandb.log({
+            "train/loss": loss_acum.item(),
+            "val/loss": val_loss.item(),
+            "train/perplexity": torch.exp(loss_acum).item(),
+            "val/perplexity": torch.exp(val_loss).item(),
+            "training/epoch": epoch,
+            "training/learning_rate": lr,
+            "training/gradient_norm": norm.item(),
+        })
 
         print(f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr}")
 
@@ -268,40 +373,21 @@ def train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, d
         
     torch.save(model.state_dict(), "./weights/model1-edu_weights.pth")
     torch.save(optimizer.state_dict(), "./weights/optimizer1-edu_weights.pth")
+    
+    wandb.finish()
 
-@click.command()
-@click.option("--vocab_size", default=50304, help="Vocab size")
-@click.option("--block_size", default=1024, help="Block size")
-@click.option("--total_batch_size", default=524288, help="Total batch size")
-@click.option("--batch_size", default=8, help="Batch size")
-@click.option("--weight_decay", default=0.01, help="Weight decay")
-@click.option("--epochs", default=19073, help="Number of epochs")
-@click.option("--lr", default=3e-4, help="Learning rate")
-@click.option("--max_steps", default=19073, help="Maximum steps")
-@click.option("--warmup_steps", default=750, help="Warmup steps")
-@click.option("--max_lr", default=3e-4, help="Maximum learning rate")
-@click.option("--data_root", default="data", help="Path to data root")
-def set_hyperparameters(vocab_size, block_size, total_batch_size, batch_size, weight_decay, epochs, lr, max_steps, warmup_steps, max_lr, data):
-    #TODO remember additional parameter of data_root for DataLoaderLite
-    vocab_size = vocab_size
-    block_size = block_size
-    total_batch_size = total_batch_size
-    batch_size = batch_size
-    weight_decay = weight_decay
-    epochs = epochs
-    lr = lr
-    max_steps = epochs
-    warmup_steps = warmup_steps
-    max_lr = lr
-    min_lr = max_lr * 0.1
-    grad_accum_steps = total_batch_size // (batch_size * block_size)
-
-    if total_batch_size % (batch_size * block_size) == 0:
-        pass
-    else:
-        log.error("total_batch_size must be divisble by B * T")
-    
-    train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, data, grad_accum_steps, vocab_size, weight_decay, min_lr)
-    
-    print(f"Grad accum steps: {grad_accum_steps} | Vocab size: {vocab_size} | Block size: {block_size} | Total batch size: {total_batch_size} | Batch size: {batch_size} | Weight decay: {weight_decay} | Number of epochs: {epochs} | Learning rate: {lr} | Maximum steps: {max_steps} | Warmup steps: {warmup_steps} | Maximum learning rate: {max_lr}")
-    
+# Main training call
+train(
+    batch_size=BATCH_SIZE,
+    block_size=BLOCK_SIZE,
+    epochs=EPOCHS,
+    lr=LEARNING_RATE,
+    max_steps=MAX_STEPS,
+    warmup_steps=WARMUP_STEPS,
+    max_lr=MAX_LR,
+    data_root=DATA_ROOT,
+    grad_accum_steps=GRAD_ACCUM_STEPS,
+    vocab_size=VOCAB_SIZE,
+    weight_decay=WEIGHT_DECAY,
+    min_lr=MIN_LR
+) 
