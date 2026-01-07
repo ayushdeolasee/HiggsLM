@@ -7,10 +7,10 @@ from rich import print
 
 # Configuration variables (edit as needed)
 BATCH_SIZE = 16
-DIRECTORY = "./fineweb10B-edu"
+DIRECTORY = "fineweb-edu-100BT"
 MAX_LENGTH = 2048
 DATASET_TYPE = "fineweb-edu"
-NAME = "sample-10BT"
+NAME = "sample-100BT"
 SHARD_SIZE = int(1e8)
 
 
@@ -27,7 +27,7 @@ def download():
         os.makedirs(DIRECTORY, exist_ok=True)
         print(f":warning: [bold yellow]Directory {DIRECTORY} created[/bold yellow]")
 
-    fw = load_dataset(f"HuggingFaceFW/{DATASET_TYPE}", name=NAME, split="train")
+    fw = load_dataset(f"HuggingFaceFW/{DATASET_TYPE}", name=NAME, split="train", cache_dir="/Volumes/Parallels Windows/huggingface_cache")
     enc = tiktoken.encoding_for_model("gpt2")
     eot = enc._special_tokens["<|endoftext|>"]
 
