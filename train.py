@@ -365,14 +365,26 @@ def train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, d
 
         print(f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr}")
 
-    if os.path.exists("weights"):
-        pass
-    else:
+        # Save model checkpoint every 1000 epochs
+        if (epoch + 1) % 1000 == 0:
+            if not os.path.exists("weights"):
+                os.mkdir("weights")
+            mid_save_path = "./weights/model-mid-train-save.pth"
+            # Delete old save if it exists
+            if os.path.exists(mid_save_path):
+                os.remove(mid_save_path)
+                print(f"[yellow]Deleted old checkpoint[/yellow]")
+            torch.save(model.state_dict(), mid_save_path)
+            print(f"[green]Saved checkpoint at epoch {epoch + 1}[/green]")
+
+    if not os.path.exists("weights"):
         print("[yellow]creating a weights directory[/yellow]") 
         os.mkdir("weights")
         
-    torch.save(model.state_dict(), "./weights/model1-edu_weights.pth")
-    torch.save(optimizer.state_dict(), "./weights/optimizer1-edu_weights.pth")
+    # Save final model
+    torch.save(model.state_dict(), "./weights/model-final-save.pth")
+    torch.save(optimizer.state_dict(), "./weights/optimizer-final-save.pth")
+    print("[green]Saved final model weights[/green]")
     
     wandb.finish()
 
