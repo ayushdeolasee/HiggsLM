@@ -10,6 +10,7 @@ import inspect
 from rich import print
 from rich.logging import RichHandler
 import wandb
+import tiktoken
 
 FORMAT = "%(message)s"
 logging.basicConfig(
@@ -376,6 +377,33 @@ def train(batch_size, block_size, epochs, lr, max_steps, warmup_steps, max_lr, d
                 print(f"[yellow]Deleted old checkpoint[/yellow]")
             torch.save(model.state_dict(), mid_save_path)
             print(f"[green]Saved checkpoint at epoch {epoch + 1}[/green]")
+
+            # Generate text from prompts
+            print("\n[bold cyan]Running inference on test prompts...[/bold cyan]\n")
+            enc = tiktoken.get_encoding("gpt2")
+            model.eval()
+            
+            prompts = ["Photosynthesis is ", "3 + 7(5-7) is equal to "]
+            
+            for prompt in prompts:
+                print(f"[yellow]Prompt:[/yellow] {prompt}")
+                tokens = enc.encode(prompt)
+                tokens = torch.tensor(tokens, dtype=torch.long).unsqueeze(0).to(device)
+                
+                with torch.no_grad():
+                    for _ in range(50):  # Generate 50 tokens
+                        logits = model(tokens)
+                        logits = logits[:, -1, :]  # Get last token logits
+                        probs = F.softmax(logits, dim=-1)
+                        next_token = torch.multinomial(probs, num_samples=1)
+                        tokens = torch.cat([tokens, next_token], dim=1)
+                        if tokens.size(1) >= block_size:
+                            break
+                
+                generated_text = enc.decode(tokens[0].tolist())
+                print(f"[green]Output:[/green] {generated_text}\n")
+            
+            model.train()  # Set back to training mode
 
     if not os.path.exists("weights"):
         print("[yellow]creating a weights directory[/yellow]") 
