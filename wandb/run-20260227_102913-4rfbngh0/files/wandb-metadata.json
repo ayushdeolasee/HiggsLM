@@ -1,0 +1,17 @@
+{
+  "os": "macOS-26.3-arm64-arm-64bit-Mach-O",
+  "python": "CPython 3.13.5",
+  "startedAt": "2026-02-27T04:59:13.787275Z",
+  "program": "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py",
+  "codePath": "scripts/pre-train.py",
+  "codePathLocal": "scripts/pre-train.py",
+  "git": {
+    "remote": "git@github.com:pypdeveloper/gpt2-style-transformer.git",
+    "commit": "a646c5dc607763662ff4cc36ec38ba5b04e0237b"
+  },
+  "email": "pypdeveloper@deolasee.org",
+  "root": "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training",
+  "host": "Ayushs-MacBook-Pro-2.local",
+  "executable": "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/bin/python3",
+  "writerId": "z5bjvzn3qi1wulev5c5gdrf7sqb194lp"
+}

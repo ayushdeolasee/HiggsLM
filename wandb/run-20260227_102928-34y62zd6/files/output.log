@@ -1,0 +1,12 @@
+no shards found for split train
+[green]found 0 shards for split train[/green]
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 91, in <module>
+    train_dataloader = DataLoaderLite(B=args.batch_size, T=args.seq_length, split="train", data_root=args.data_root)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/dataloader.py", line 30, in __init__
+    self.reset()
+    ~~~~~~~~~~^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/dataloader.py", line 35, in reset
+    self.tokens = load_tokens(self.shards[self.current_shard])
+                              ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range

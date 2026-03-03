@@ -9,4 +9,5 @@ weights
 kaggle
 kaggle_copy
 data
+.venv
 .DS_Store

@@ -1,0 +1,34 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/_compile.py:54: UserWarning: optimizer contains a parameter group with duplicate parameters; in future, this will cause an error; see github.com/pytorch/pytorch/issues/40967 for more information
+  return disable_fn(*args, **kwargs)
+q shape: torch.Size([8, 16, 64, 1024]), k shape: torch.Size([8, 8, 64, 64]), v shape: torch.Size([8, 8, 64, 64])
+q.shape: torch.Size([8, 16, 64, 1024]), k.shape: torch.Size([8, 16, 64, 64]), v.shape: torch.Size([8, 16, 64, 64])
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 143, in <module>
+    output = model(x)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1882, in _call_impl
+    return inner()
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1830, in inner
+    result = forward_call(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 168, in forward
+    x = block(x)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 129, in forward
+    x = x + self.MultiheadAttention(self.rmsnorm1(x))
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 96, in forward
+    y = F.scaled_dot_product_attention(q, k.repeat_interleave(self.n_kv_head_per_q, dim=1), v.repeat_interleave(self.n_kv_head_per_q, dim=1), is_causal=True)
+RuntimeError: Expected size for first two dimensions of batch2 tensor to be: [128, 1024] but got: [128, 64].
