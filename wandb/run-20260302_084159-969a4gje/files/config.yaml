@@ -1,0 +1,100 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            a5eshflnmbz2ulzwz945yrg1hfiyt1xf:
+                apple:
+                    ecpuCores: 2
+                    gpuCores: 32
+                    memoryGb: 32
+                    name: Apple M1 Max
+                    pcpuCores: 8
+                    ramTotalBytes: "34359738368"
+                    swapTotalBytes: "3221225472"
+                args:
+                    - --batch_size
+                    - "8"
+                    - --seq_length
+                    - "64"
+                    - --epochs
+                    - "1500"
+                    - --warmup_steps
+                    - "100"
+                    - --data_root
+                    - ./fineweb10B-edu
+                    - --wandb
+                    - "false"
+                codePath: scripts/pre-train.py
+                codePathLocal: scripts/pre-train.py
+                cpu_count: 10
+                cpu_count_logical: 10
+                disk:
+                    /:
+                        total: "994631127040"
+                        used: "856548696064"
+                email: pypdeveloper@deolasee.org
+                executable: /Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/bin/python
+                git:
+                    commit: a646c5dc607763662ff4cc36ec38ba5b04e0237b
+                    remote: git@github.com:pypdeveloper/gpt2-style-transformer.git
+                host: Ayushs-MacBook-Pro-2.local
+                memory:
+                    total: "34359738368"
+                os: macOS-26.3-arm64-arm-64bit-Mach-O
+                program: /Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py
+                python: CPython 3.13.5
+                root: /Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training
+                startedAt: "2026-03-02T03:11:59.293854Z"
+                writerId: a5eshflnmbz2ulzwz945yrg1hfiyt1xf
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 1
+                - 13
+                - 15
+                - 16
+            "4": 3.13.5
+            "5": 0.25.0
+            "8":
+                - 2
+            "12": 0.25.0
+            "13": darwin-arm64
+batch_size:
+    value: 8
+data_root:
+    value: ./fineweb10B-edu
+embed_dim:
+    value: 1024
+epochs:
+    value: 1500
+grad_accum_steps:
+    value: 8
+learning_rate:
+    value: 0.0003
+max_lr:
+    value: 0.0003
+max_steps:
+    value: 1500
+min_lr:
+    value: 3e-05
+num_blocks:
+    value: 8
+num_heads:
+    value: 16
+seq_length:
+    value: 64
+total_parameters:
+    value: 269888768
+trainable_parameters:
+    value: 269888768
+vocab_size:
+    value: 50304
+warmup_steps:
+    value: 100
+weight_decay:
+    value: 0.01

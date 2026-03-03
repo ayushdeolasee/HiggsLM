@@ -1,0 +1,66 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            5bn1pax2ptmttjsgc26ecolz2cjzmiy3:
+                codePath: scripts/pre-train.py
+                codePathLocal: scripts/pre-train.py
+                email: pypdeveloper@deolasee.org
+                executable: /Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/bin/python3
+                git:
+                    commit: a646c5dc607763662ff4cc36ec38ba5b04e0237b
+                    remote: git@github.com:pypdeveloper/gpt2-style-transformer.git
+                host: Ayushs-MacBook-Pro-2.local
+                os: macOS-26.3-arm64-arm-64bit-Mach-O
+                program: /Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py
+                python: CPython 3.13.5
+                root: /Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training
+                startedAt: "2026-02-27T04:59:28.106740Z"
+                writerId: 5bn1pax2ptmttjsgc26ecolz2cjzmiy3
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 13
+                - 15
+                - 16
+            "4": 3.13.5
+            "5": 0.25.0
+            "8":
+                - 2
+            "12": 0.25.0
+            "13": darwin-arm64
+batch_size:
+    value: 8
+data_root:
+    value: ../data
+embed_dim:
+    value: 1024
+epochs:
+    value: 19083
+grad_accum_steps:
+    value: 8
+learning_rate:
+    value: 0.0003
+max_lr:
+    value: 0.0003
+max_steps:
+    value: 19083
+min_lr:
+    value: 3e-05
+num_blocks:
+    value: 8
+num_heads:
+    value: 16
+seq_length:
+    value: 1024
+vocab_size:
+    value: 50304
+warmup_steps:
+    value: 750
+weight_decay:
+    value: 0.01

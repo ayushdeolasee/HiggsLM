@@ -1,0 +1,39 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/linear.py:124: UserWarning: Initializing zero-element tensors is a no-op
+  init.kaiming_uniform_(self.weight, a=math.sqrt(5))
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/_compile.py:54: UserWarning: optimizer contains a parameter group with duplicate parameters; in future, this will cause an error; see github.com/pytorch/pytorch/issues/40967 for more information
+  return disable_fn(*args, **kwargs)
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 142, in <module>
+    output = model(x)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1882, in _call_impl
+    return inner()
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1830, in inner
+    result = forward_call(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 159, in forward
+    x = block(x)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 120, in forward
+    x = x + self.MultiheadAttention(self.rmsnorm1(x))
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 81, in forward
+    factor = self.alpha * math.sqrt(C // self.n_head)
+             ^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1965, in __getattr__
+    raise AttributeError(
+        f"'{type(self).__name__}' object has no attribute '{name}'"
+    )
+AttributeError: 'GroupedQueryAttention' object has no attribute 'alpha'

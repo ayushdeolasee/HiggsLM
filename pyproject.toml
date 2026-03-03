@@ -1,0 +1,15 @@
+[project]
+name = "llm"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.4.2",
+    "tiktoken>=0.12.0",
+    "torch>=2.10.0",
+    "wandb>=0.25.0",
+]
+
+[tool.setuptools]
+packages = ["llm"]

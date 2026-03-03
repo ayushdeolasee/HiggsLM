@@ -1,0 +1,22 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/linear.py:124: UserWarning: Initializing zero-element tensors is a no-op
+  init.kaiming_uniform_(self.weight, a=math.sqrt(5))
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 96, in <module>
+    model = Model(seq_length=args.seq_length, vocab_size=args.vocab_size, embed_dim=args.embed_dim, num_heads=args.num_heads, num_blocks=args.num_blocks, kv_per_head=args.kv_per_head).to(device)
+            ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 138, in __init__
+    self.blocks = nn.ModuleList([Block(self.embed_dim, self.num_heads, self.kv_per_head, self.seq_length) for _ in range(self.num_blocks)])
+                                 ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 117, in __init__
+    self.MultiheadAttention = GroupedQueryAttention(self.embed_dim, self.num_heads, self.kv_per_head, seq_length)
+                              ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/gpt.py", line 66, in __init__
+    self.rope = RotaryPositionEmbedding(self.n_embd // self.n_head, self.seq_length)
+                                        ^^^^^^^^^^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1965, in __getattr__
+    raise AttributeError(
+        f"'{type(self).__name__}' object has no attribute '{name}'"
+    )
+AttributeError: 'GroupedQueryAttention' object has no attribute 'n_embd'

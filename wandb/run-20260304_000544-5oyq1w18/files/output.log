@@ -1,0 +1,723 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/_compile.py:54: UserWarning: optimizer contains a parameter group with duplicate parameters; in future, this will cause an error; see github.com/pytorch/pytorch/issues/40967 for more information
+  return disable_fn(*args, **kwargs)
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+self.n_head: 16, self.n_kv_head_per_q: 2, self.n_kv_head: 8, self.head_dim: 64, self.embed_dim: 1024
+normal 16384 vs 512
+q shape: torch.Size([8, 16, 64, 64]), k shape: torch.Size([8, 16, 64, 64]), v shape: torch.Size([8, 16, 64, 64])
+q_scaled shape: torch.Size([8, 16, 64, 64]), k_hat shape: torch.Size([8, 16, 64, 64])
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Done
+self.inv_freq.shape: torch.Size([32]), self.position.shape: torch.Size([64]), self.freqs.shape: torch.Size([64, 32])
+x shape: torch.Size([8, 16, 64, 64]), x1.shape: torch.Size([8, 16, 64, 32]), x2.shape: torch.Size([8, 16, 64, 32]), cos shape: torch.Size([64, 32]), sin shape: torch.Size([64, 32])
+After unsqueeze, cos shape: torch.Size([1, 1, 64, 32]), sin shape: torch.Size([1, 1, 64, 32])
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 151, in <module>
+    optimizer.step()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/optim/optimizer.py", line 526, in wrapper
+    out = func(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/optimizer.py", line 74, in step
+    update = muon_update(p.grad, state["momentum_buffer"], beta=group["momentum"])
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/optimizer.py", line 30, in muon_update
+    update = zeropower_via_newtonschulz5(update, steps=ns_steps)
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/llm/optimizer.py", line 10, in zeropower_via_newtonschulz5
+    eps = X.new_tensor(1e-7)
+KeyboardInterrupt

@@ -1,0 +1,9 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/_compile.py:54: UserWarning: optimizer contains a parameter group with duplicate parameters; in future, this will cause an error; see github.com/pytorch/pytorch/issues/40967 for more information
+  return disable_fn(*args, **kwargs)
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 153, in <module>
+    lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.max_steps, args.min_lr)
+                                                       ^^^^^^^^^^^^^^
+AttributeError: 'Namespace' object has no attribute 'max_steps'

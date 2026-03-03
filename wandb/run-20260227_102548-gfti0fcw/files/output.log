@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 91, in <module>
+    train_dataloader = DataLoaderLite(B=args.batch_size, T=args.block_size, split="train", data_root=args.data_root)
+                                                           ^^^^^^^^^^^^^^^
+AttributeError: 'Namespace' object has no attribute 'block_size'. Did you mean: 'batch_size'?

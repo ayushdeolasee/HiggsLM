@@ -1,0 +1,93 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/_compile.py:54: UserWarning: optimizer contains a parameter group with duplicate parameters; in future, this will cause an error; see github.com/pytorch/pytorch/issues/40967 for more information
+  return disable_fn(*args, **kwargs)
+[purple]Epoch[/purple]: 0| [blue]Train Loss[/blue]: 11.222869873046875 | [magenta]Val Loss[/magenta]: 10.01177978515625 | [bold cyan]Norm[/bold cyan]: 9.93909740447998 | [bold turquoise4]lr[/bold turquoise4]: 2.9999999999999997e-06
+[purple]Epoch[/purple]: 1| [blue]Train Loss[/blue]: 9.929313659667969 | [magenta]Val Loss[/magenta]: 10.044189453125 | [bold cyan]Norm[/bold cyan]: 7.016030788421631 | [bold turquoise4]lr[/bold turquoise4]: 5.999999999999999e-06
+[purple]Epoch[/purple]: 2| [blue]Train Loss[/blue]: 9.949790954589844 | [magenta]Val Loss[/magenta]: 10.00018310546875 | [bold cyan]Norm[/bold cyan]: 7.216164588928223 | [bold turquoise4]lr[/bold turquoise4]: 9e-06
+[purple]Epoch[/purple]: 3| [blue]Train Loss[/blue]: 9.99908447265625 | [magenta]Val Loss[/magenta]: 9.95391845703125 | [bold cyan]Norm[/bold cyan]: 7.209688186645508 | [bold turquoise4]lr[/bold turquoise4]: 1.1999999999999999e-05
+[purple]Epoch[/purple]: 4| [blue]Train Loss[/blue]: 9.955322265625 | [magenta]Val Loss[/magenta]: 9.83953857421875 | [bold cyan]Norm[/bold cyan]: 7.517445087432861 | [bold turquoise4]lr[/bold turquoise4]: 1.4999999999999999e-05
+[purple]Epoch[/purple]: 5| [blue]Train Loss[/blue]: 9.907493591308594 | [magenta]Val Loss[/magenta]: 9.90704345703125 | [bold cyan]Norm[/bold cyan]: 7.021537780761719 | [bold turquoise4]lr[/bold turquoise4]: 1.8e-05
+[purple]Epoch[/purple]: 6| [blue]Train Loss[/blue]: 9.98040771484375 | [magenta]Val Loss[/magenta]: 9.86871337890625 | [bold cyan]Norm[/bold cyan]: 6.934525012969971 | [bold turquoise4]lr[/bold turquoise4]: 2.1e-05
+[purple]Epoch[/purple]: 7| [blue]Train Loss[/blue]: 9.768020629882812 | [magenta]Val Loss[/magenta]: 9.94573974609375 | [bold cyan]Norm[/bold cyan]: 7.94161319732666 | [bold turquoise4]lr[/bold turquoise4]: 2.3999999999999997e-05
+[purple]Epoch[/purple]: 8| [blue]Train Loss[/blue]: 9.693359375 | [magenta]Val Loss[/magenta]: 9.90618896484375 | [bold cyan]Norm[/bold cyan]: 10.305034637451172 | [bold turquoise4]lr[/bold turquoise4]: 2.6999999999999996e-05
+[purple]Epoch[/purple]: 9| [blue]Train Loss[/blue]: 9.751190185546875 | [magenta]Val Loss[/magenta]: 9.834716796875 | [bold cyan]Norm[/bold cyan]: 7.815800189971924 | [bold turquoise4]lr[/bold turquoise4]: 2.9999999999999997e-05
+[purple]Epoch[/purple]: 10| [blue]Train Loss[/blue]: 9.759269714355469 | [magenta]Val Loss[/magenta]: 9.6368408203125 | [bold cyan]Norm[/bold cyan]: 7.211283206939697 | [bold turquoise4]lr[/bold turquoise4]: 3.2999999999999996e-05
+[purple]Epoch[/purple]: 11| [blue]Train Loss[/blue]: 9.497879028320312 | [magenta]Val Loss[/magenta]: 9.4674072265625 | [bold cyan]Norm[/bold cyan]: 8.090008735656738 | [bold turquoise4]lr[/bold turquoise4]: 3.6e-05
+[purple]Epoch[/purple]: 12| [blue]Train Loss[/blue]: 9.523117065429688 | [magenta]Val Loss[/magenta]: 9.51959228515625 | [bold cyan]Norm[/bold cyan]: 7.327319145202637 | [bold turquoise4]lr[/bold turquoise4]: 3.9e-05
+[purple]Epoch[/purple]: 13| [blue]Train Loss[/blue]: 9.454231262207031 | [magenta]Val Loss[/magenta]: 9.503173828125 | [bold cyan]Norm[/bold cyan]: 7.701971530914307 | [bold turquoise4]lr[/bold turquoise4]: 4.2e-05
+[purple]Epoch[/purple]: 14| [blue]Train Loss[/blue]: 9.411033630371094 | [magenta]Val Loss[/magenta]: 9.1990966796875 | [bold cyan]Norm[/bold cyan]: 7.2106122970581055 | [bold turquoise4]lr[/bold turquoise4]: 4.4999999999999996e-05
+[purple]Epoch[/purple]: 15| [blue]Train Loss[/blue]: 9.223121643066406 | [magenta]Val Loss[/magenta]: 9.06378173828125 | [bold cyan]Norm[/bold cyan]: 7.569095134735107 | [bold turquoise4]lr[/bold turquoise4]: 4.7999999999999994e-05
+[purple]Epoch[/purple]: 16| [blue]Train Loss[/blue]: 9.007965087890625 | [magenta]Val Loss[/magenta]: 9.00823974609375 | [bold cyan]Norm[/bold cyan]: 9.432923316955566 | [bold turquoise4]lr[/bold turquoise4]: 5.099999999999999e-05
+[purple]Epoch[/purple]: 17| [blue]Train Loss[/blue]: 9.018363952636719 | [magenta]Val Loss[/magenta]: 9.15753173828125 | [bold cyan]Norm[/bold cyan]: 8.516044616699219 | [bold turquoise4]lr[/bold turquoise4]: 5.399999999999999e-05
+[purple]Epoch[/purple]: 18| [blue]Train Loss[/blue]: 8.934295654296875 | [magenta]Val Loss[/magenta]: 8.92938232421875 | [bold cyan]Norm[/bold cyan]: 7.336755275726318 | [bold turquoise4]lr[/bold turquoise4]: 5.6999999999999996e-05
+[purple]Epoch[/purple]: 19| [blue]Train Loss[/blue]: 8.868499755859375 | [magenta]Val Loss[/magenta]: 8.6199951171875 | [bold cyan]Norm[/bold cyan]: 8.921133041381836 | [bold turquoise4]lr[/bold turquoise4]: 5.9999999999999995e-05
+[purple]Epoch[/purple]: 20| [blue]Train Loss[/blue]: 8.791877746582031 | [magenta]Val Loss[/magenta]: 8.7037353515625 | [bold cyan]Norm[/bold cyan]: 7.713778018951416 | [bold turquoise4]lr[/bold turquoise4]: 6.299999999999999e-05
+[purple]Epoch[/purple]: 21| [blue]Train Loss[/blue]: 9.20977783203125 | [magenta]Val Loss[/magenta]: 8.405517578125 | [bold cyan]Norm[/bold cyan]: 6.303400039672852 | [bold turquoise4]lr[/bold turquoise4]: 6.599999999999999e-05
+[purple]Epoch[/purple]: 22| [blue]Train Loss[/blue]: 8.775192260742188 | [magenta]Val Loss[/magenta]: 8.327911376953125 | [bold cyan]Norm[/bold cyan]: 6.854082107543945 | [bold turquoise4]lr[/bold turquoise4]: 6.9e-05
+[purple]Epoch[/purple]: 23| [blue]Train Loss[/blue]: 8.516609191894531 | [magenta]Val Loss[/magenta]: 8.074920654296875 | [bold cyan]Norm[/bold cyan]: 7.101789474487305 | [bold turquoise4]lr[/bold turquoise4]: 7.2e-05
+[purple]Epoch[/purple]: 24| [blue]Train Loss[/blue]: 8.409942626953125 | [magenta]Val Loss[/magenta]: 8.2103271484375 | [bold cyan]Norm[/bold cyan]: 6.540308475494385 | [bold turquoise4]lr[/bold turquoise4]: 7.5e-05
+[purple]Epoch[/purple]: 25| [blue]Train Loss[/blue]: 8.159725189208984 | [magenta]Val Loss[/magenta]: 8.030426025390625 | [bold cyan]Norm[/bold cyan]: 6.491751670837402 | [bold turquoise4]lr[/bold turquoise4]: 7.8e-05
+[purple]Epoch[/purple]: 26| [blue]Train Loss[/blue]: 8.382156372070312 | [magenta]Val Loss[/magenta]: 7.82965087890625 | [bold cyan]Norm[/bold cyan]: 5.108709335327148 | [bold turquoise4]lr[/bold turquoise4]: 8.099999999999999e-05
+[purple]Epoch[/purple]: 27| [blue]Train Loss[/blue]: 8.227180480957031 | [magenta]Val Loss[/magenta]: 8.378448486328125 | [bold cyan]Norm[/bold cyan]: 5.067461013793945 | [bold turquoise4]lr[/bold turquoise4]: 8.4e-05
+[purple]Epoch[/purple]: 28| [blue]Train Loss[/blue]: 7.9879913330078125 | [magenta]Val Loss[/magenta]: 8.436431884765625 | [bold cyan]Norm[/bold cyan]: 4.6329026222229 | [bold turquoise4]lr[/bold turquoise4]: 8.7e-05
+[purple]Epoch[/purple]: 29| [blue]Train Loss[/blue]: 7.940830230712891 | [magenta]Val Loss[/magenta]: 7.85223388671875 | [bold cyan]Norm[/bold cyan]: 5.2906365394592285 | [bold turquoise4]lr[/bold turquoise4]: 8.999999999999999e-05
+[purple]Epoch[/purple]: 30| [blue]Train Loss[/blue]: 8.024616241455078 | [magenta]Val Loss[/magenta]: 7.610809326171875 | [bold cyan]Norm[/bold cyan]: 3.9984381198883057 | [bold turquoise4]lr[/bold turquoise4]: 9.3e-05
+[purple]Epoch[/purple]: 31| [blue]Train Loss[/blue]: 7.8956146240234375 | [magenta]Val Loss[/magenta]: 7.841644287109375 | [bold cyan]Norm[/bold cyan]: 3.444748640060425 | [bold turquoise4]lr[/bold turquoise4]: 9.599999999999999e-05
+[purple]Epoch[/purple]: 32| [blue]Train Loss[/blue]: 8.057735443115234 | [magenta]Val Loss[/magenta]: 7.9913330078125 | [bold cyan]Norm[/bold cyan]: 4.221859455108643 | [bold turquoise4]lr[/bold turquoise4]: 9.9e-05
+[purple]Epoch[/purple]: 33| [blue]Train Loss[/blue]: 7.571556091308594 | [magenta]Val Loss[/magenta]: 8.27886962890625 | [bold cyan]Norm[/bold cyan]: 4.697463035583496 | [bold turquoise4]lr[/bold turquoise4]: 0.00010199999999999999
+[purple]Epoch[/purple]: 34| [blue]Train Loss[/blue]: 7.6827239990234375 | [magenta]Val Loss[/magenta]: 7.867584228515625 | [bold cyan]Norm[/bold cyan]: 4.790220260620117 | [bold turquoise4]lr[/bold turquoise4]: 0.00010499999999999999
+[purple]Epoch[/purple]: 35| [blue]Train Loss[/blue]: 7.742591857910156 | [magenta]Val Loss[/magenta]: 8.08251953125 | [bold cyan]Norm[/bold cyan]: 4.024733066558838 | [bold turquoise4]lr[/bold turquoise4]: 0.00010799999999999998
+[purple]Epoch[/purple]: 36| [blue]Train Loss[/blue]: 7.901569366455078 | [magenta]Val Loss[/magenta]: 8.135467529296875 | [bold cyan]Norm[/bold cyan]: 4.237176895141602 | [bold turquoise4]lr[/bold turquoise4]: 0.00011099999999999999
+[purple]Epoch[/purple]: 37| [blue]Train Loss[/blue]: 7.719013214111328 | [magenta]Val Loss[/magenta]: 7.75537109375 | [bold cyan]Norm[/bold cyan]: 3.8626773357391357 | [bold turquoise4]lr[/bold turquoise4]: 0.00011399999999999999
+[purple]Epoch[/purple]: 38| [blue]Train Loss[/blue]: 8.149749755859375 | [magenta]Val Loss[/magenta]: 7.911865234375 | [bold cyan]Norm[/bold cyan]: 4.602038383483887 | [bold turquoise4]lr[/bold turquoise4]: 0.00011699999999999998
+[purple]Epoch[/purple]: 39| [blue]Train Loss[/blue]: 7.997840881347656 | [magenta]Val Loss[/magenta]: 7.601165771484375 | [bold cyan]Norm[/bold cyan]: 6.434814929962158 | [bold turquoise4]lr[/bold turquoise4]: 0.00011999999999999999
+[purple]Epoch[/purple]: 40| [blue]Train Loss[/blue]: 7.821399688720703 | [magenta]Val Loss[/magenta]: 7.486114501953125 | [bold cyan]Norm[/bold cyan]: 3.582303524017334 | [bold turquoise4]lr[/bold turquoise4]: 0.00012299999999999998
+[purple]Epoch[/purple]: 41| [blue]Train Loss[/blue]: 7.710075378417969 | [magenta]Val Loss[/magenta]: 7.663482666015625 | [bold cyan]Norm[/bold cyan]: 5.355896472930908 | [bold turquoise4]lr[/bold turquoise4]: 0.00012599999999999997
+[purple]Epoch[/purple]: 42| [blue]Train Loss[/blue]: 7.985523223876953 | [magenta]Val Loss[/magenta]: 7.742279052734375 | [bold cyan]Norm[/bold cyan]: 4.582231521606445 | [bold turquoise4]lr[/bold turquoise4]: 0.000129
+[purple]Epoch[/purple]: 43| [blue]Train Loss[/blue]: 7.797878265380859 | [magenta]Val Loss[/magenta]: 8.03125 | [bold cyan]Norm[/bold cyan]: 3.7260899543762207 | [bold turquoise4]lr[/bold turquoise4]: 0.00013199999999999998
+[purple]Epoch[/purple]: 44| [blue]Train Loss[/blue]: 7.553020477294922 | [magenta]Val Loss[/magenta]: 7.93243408203125 | [bold cyan]Norm[/bold cyan]: 3.946063995361328 | [bold turquoise4]lr[/bold turquoise4]: 0.00013499999999999997
+[purple]Epoch[/purple]: 45| [blue]Train Loss[/blue]: 7.731464385986328 | [magenta]Val Loss[/magenta]: 7.76019287109375 | [bold cyan]Norm[/bold cyan]: 3.7107555866241455 | [bold turquoise4]lr[/bold turquoise4]: 0.000138
+[purple]Epoch[/purple]: 46| [blue]Train Loss[/blue]: 7.990863800048828 | [magenta]Val Loss[/magenta]: 8.239776611328125 | [bold cyan]Norm[/bold cyan]: 3.8250346183776855 | [bold turquoise4]lr[/bold turquoise4]: 0.00014099999999999998
+[purple]Epoch[/purple]: 47| [blue]Train Loss[/blue]: 7.7494964599609375 | [magenta]Val Loss[/magenta]: 7.817352294921875 | [bold cyan]Norm[/bold cyan]: 3.6930840015411377 | [bold turquoise4]lr[/bold turquoise4]: 0.000144
+[purple]Epoch[/purple]: 48| [blue]Train Loss[/blue]: 7.6486053466796875 | [magenta]Val Loss[/magenta]: 7.97564697265625 | [bold cyan]Norm[/bold cyan]: 4.022477149963379 | [bold turquoise4]lr[/bold turquoise4]: 0.000147
+[purple]Epoch[/purple]: 49| [blue]Train Loss[/blue]: 8.330711364746094 | [magenta]Val Loss[/magenta]: 7.682342529296875 | [bold cyan]Norm[/bold cyan]: 6.955842018127441 | [bold turquoise4]lr[/bold turquoise4]: 0.00015
+[purple]Epoch[/purple]: 50| [blue]Train Loss[/blue]: 7.7714996337890625 | [magenta]Val Loss[/magenta]: 7.809417724609375 | [bold cyan]Norm[/bold cyan]: 4.884640693664551 | [bold turquoise4]lr[/bold turquoise4]: 0.000153
+[purple]Epoch[/purple]: 51| [blue]Train Loss[/blue]: 7.801185607910156 | [magenta]Val Loss[/magenta]: 7.391326904296875 | [bold cyan]Norm[/bold cyan]: 4.907846927642822 | [bold turquoise4]lr[/bold turquoise4]: 0.000156
+[purple]Epoch[/purple]: 52| [blue]Train Loss[/blue]: 7.8017120361328125 | [magenta]Val Loss[/magenta]: 7.562408447265625 | [bold cyan]Norm[/bold cyan]: 4.142240047454834 | [bold turquoise4]lr[/bold turquoise4]: 0.00015899999999999996
+[purple]Epoch[/purple]: 53| [blue]Train Loss[/blue]: 7.801780700683594 | [magenta]Val Loss[/magenta]: 7.62762451171875 | [bold cyan]Norm[/bold cyan]: 4.356753349304199 | [bold turquoise4]lr[/bold turquoise4]: 0.00016199999999999998
+[purple]Epoch[/purple]: 54| [blue]Train Loss[/blue]: 8.156135559082031 | [magenta]Val Loss[/magenta]: 7.390960693359375 | [bold cyan]Norm[/bold cyan]: 5.327977180480957 | [bold turquoise4]lr[/bold turquoise4]: 0.00016499999999999997
+[purple]Epoch[/purple]: 55| [blue]Train Loss[/blue]: 7.791460037231445 | [magenta]Val Loss[/magenta]: 7.718719482421875 | [bold cyan]Norm[/bold cyan]: 3.955827236175537 | [bold turquoise4]lr[/bold turquoise4]: 0.000168
+[purple]Epoch[/purple]: 56| [blue]Train Loss[/blue]: 7.885242462158203 | [magenta]Val Loss[/magenta]: 7.587066650390625 | [bold cyan]Norm[/bold cyan]: 3.3480846881866455 | [bold turquoise4]lr[/bold turquoise4]: 0.00017099999999999998
+[purple]Epoch[/purple]: 57| [blue]Train Loss[/blue]: 7.867748260498047 | [magenta]Val Loss[/magenta]: 7.89990234375 | [bold cyan]Norm[/bold cyan]: 4.470627784729004 | [bold turquoise4]lr[/bold turquoise4]: 0.000174
+[purple]Epoch[/purple]: 58| [blue]Train Loss[/blue]: 7.889076232910156 | [magenta]Val Loss[/magenta]: 7.532135009765625 | [bold cyan]Norm[/bold cyan]: 3.8343682289123535 | [bold turquoise4]lr[/bold turquoise4]: 0.00017699999999999997
+[purple]Epoch[/purple]: 59| [blue]Train Loss[/blue]: 7.888322830200195 | [magenta]Val Loss[/magenta]: 7.937469482421875 | [bold cyan]Norm[/bold cyan]: 3.8016107082366943 | [bold turquoise4]lr[/bold turquoise4]: 0.00017999999999999998
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 147, in <module>
+    train_loss.backward()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/_tensor.py", line 630, in backward
+    torch.autograd.backward(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        self, gradient, retain_graph, create_graph, inputs=inputs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+    ~~~~~~~~~~~~~~~~~~~~^
+        tensors,
+        ^^^^^^^^
+    ...<5 lines>...
+        accumulate_grad=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/.venv/lib/python3.13/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        t_outputs, *args, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )  # Calls into the C++ engine to run the backward pass
+    ^
+KeyboardInterrupt

@@ -1,0 +1,7 @@
+[green]found 19806 shards for split train[/green]
+[green]found 9 shards for split val[/green]
+Traceback (most recent call last):
+  File "/Users/ayushdeolasee/Developer/fineweb_gpt2_transformer_training/scripts/pre-train.py", line 95, in <module>
+    model = Model(seq_length=args.seq_length, vocab_size=args.vocab_size, embed_dim=args.embed_dim, num_heads=args.num_heads, num_blocks=args.num_blocks, kv_per_head=args.kv_per_head).to(device)
+            ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Model.__init__() got an unexpected keyword argument 'seq_length'
