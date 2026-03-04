@@ -85,66 +85,47 @@ parser.add_argument(
     help="Number of query heads that share each key/value head in grouped-query attention",
 )
 parser.add_argument(
-    "--wandb", type=bool, default=True, help="Whether to use wandb for logging"
+    "--wandb", action=argparse.BooleanOptionalAction, help="Whether to use wandb for logging"
 )
+
 args = parser.parse_args()
-# TODO: Need to check that warmup_steps is not greater than epochs
-# TODO: Check that max_lr > min_lr
+assert args.max_lr > args.min_lr, "max_lr should be greater than min_lr"
+assert args.warmup_steps < args.epochs, "warmup_steps should be less than epochs"
+
 # TODO: Check that data_root folder exists
-# TODO: Add functionality to disable and enable wandb logging
-"""
-batch_size = 8
-seq_length = 1024
-epochs = 19073
-learning_rate = 3e-4
-max_steps = 19073
-warmup_steps = 750 
-max_lr = 3e-4
-min_lr = 3e-5
-data_root = "data"
-grad_accum_steps = 8
-vocab_size = 50304
-weight_decay = 0.01
-embed_dim = 1024
-num_heads = 16
-num_blocks = 8
-query_heads_per_kv = 2
-"""
 
 device = "cpu"
 if torch.backends.mps.is_available():
     device = "mps"
-
 if torch.cuda.is_available():
     device = "cuda"
 
 print("[green]Using device:[green]", device)
 
+if (args.wandb == True):
+    config = {
+        "batch_size": args.batch_size,
+        "seq_length": args.seq_length,
+        "epochs": args.epochs,
+        "learning_rate": args.lr,
+        "warmup_steps": args.warmup_steps,
+        "max_lr": args.max_lr,
+        "min_lr": args.min_lr,
+        "data_root": args.data_root,
+        "grad_accum_steps": args.grad_accum_steps,
+        "vocab_size": args.vocab_size,
+        "weight_decay": args.weight_decay,
+        "embed_dim": args.embed_dim,
+        "num_heads": args.num_heads,
+        "num_blocks": args.num_blocks,
+    }
 
-# Initialize wandb
-config = {
-    "batch_size": args.batch_size,
-    "seq_length": args.seq_length,
-    "epochs": args.epochs,
-    "learning_rate": args.lr,
-    "warmup_steps": args.warmup_steps,
-    "max_lr": args.max_lr,
-    "min_lr": args.min_lr,
-    "data_root": args.data_root,
-    "grad_accum_steps": args.grad_accum_steps,
-    "vocab_size": args.vocab_size,
-    "weight_decay": args.weight_decay,
-    "embed_dim": args.embed_dim,
-    "num_heads": args.num_heads,
-    "num_blocks": args.num_blocks,
-}
-
-wandb.init(
-    project="fineweb-gpt2-training",
-    name="gpt2-standard-training",
-    config=config,
-    tags=["gpt2", "transformer", "standard"],
-)
+    wandb.init(
+        project="HiggsLM",
+        name="higgslm-pre-training",
+        config=config,
+        tags=["higgslm", "transformer", "pre-training"],
+    )
 
 train_dataloader = DataLoaderLite(
     B=args.batch_size, T=args.seq_length, split="train", data_root=args.data_root
@@ -164,18 +145,16 @@ model = Model(
 
 total_params = sum(p.numel() for p in model.parameters())
 trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-wandb.config.update(
-    {"total_parameters": total_params, "trainable_parameters": trainable_params}
-)
-
+if (args.wandb == True):
+    wandb.config.update(
+        {"total_parameters": total_params, "trainable_parameters": trainable_params}
+    )
+    wandb.watch(model, log="all", log_freq=100)
 if device == "mps":
     pass
 else:
     model = torch.compile(model)
     print("[green]Using compiled model[/green]")
-
-# Watch model for gradient tracking
-wandb.watch(model, log="all", log_freq=100)
 
 param_dict = [p for p in model.parameters()]
 param_dict = [p for p in param_dict if p.requires_grad]
@@ -230,24 +209,25 @@ for epoch in range(args.epochs):
             output = model(x)
             val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
 
-    # Log to wandb
-    wandb.log(
-        {
-            "train/loss": loss_acum.item(),
-            "val/loss": val_loss.item(),
-            "train/perplexity": torch.exp(loss_acum).item(),
-            "val/perplexity": torch.exp(val_loss).item(),
-            "training/epoch": epoch,
-            "training/learning_rate": lr,
-            "training/gradient_norm": norm.item(),
-        }
-    )
+    if (args.wandb == True): 
+        wandb.log(
+            {
+                "train/loss": loss_acum.item(),
+                "val/loss": val_loss.item(),
+                "train/perplexity": torch.exp(loss_acum).item(),
+                "val/perplexity": torch.exp(val_loss).item(),
+                "training/epoch": epoch,
+                "training/learning_rate": lr,
+                "training/gradient_norm": norm.item(),
+            }
+        )
 
     print(
         f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr}"
     )
 
     # Save model checkpoint every 1000 epochs
+    # TODO: Add this logic in the checkpoint file 
     if (epoch + 1) % 1000 == 0:
         if not os.path.exists("weights"):
             os.mkdir("weights")
@@ -295,4 +275,5 @@ torch.save(model.state_dict(), "./weights/model-final-save.pth")
 torch.save(optimizer.state_dict(), "./weights/optimizer-final-save.pth")
 print("[green]Saved final model weights[/green]")
 
-wandb.finish()
+if (args.wandb == True):
+    wandb.finish()
