@@ -91,8 +91,7 @@ parser.add_argument(
 args = parser.parse_args()
 assert args.max_lr > args.min_lr, "max_lr should be greater than min_lr"
 assert args.warmup_steps < args.epochs, "warmup_steps should be less than epochs"
-
-# TODO: Check that data_root folder exists
+assert os.path.exists(args.data_root), f"data_root folder {args.data_root} does not exist"
 
 device = "cpu"
 if torch.backends.mps.is_available():
