@@ -4,17 +4,8 @@ models
 wandb
 experiments
 logs
-<<<<<<< HEAD
-weights
-kaggle
-kaggle_copy
-data
-.venv
-.DS_Store
-=======
 .DS_Store
 data
 __pycache__
 .kaggle
 .idea
->>>>>>> main
