@@ -10,6 +10,7 @@ from llm.dataloader import DataLoaderLite
 from llm.gpt import Model
 from llm.optimizer import SingleDeviceMuonWithAuxAdam
 from llm.lr import get_lr
+from llm.checkpoint_manager import save_checkpoint
 
 parser = argparse.ArgumentParser(description="Run the pre-training script")
 # TODO: Inconsitency in naming for num_heads and n_heads
@@ -226,17 +227,8 @@ for epoch in range(args.epochs):
     )
 
     # Save model checkpoint every 1000 epochs
-    # TODO: Add this logic in the checkpoint file 
     if (epoch + 1) % 1000 == 0:
-        if not os.path.exists("weights"):
-            os.mkdir("weights")
-        mid_save_path = "./weights/model-mid-train-save.pth"
-        # Delete old save if it exists
-        if os.path.exists(mid_save_path):
-            os.remove(mid_save_path)
-            print(f"[yellow]Deleted old checkpoint[/yellow]")
-        torch.save(model.state_dict(), mid_save_path)
-        print(f"[green]Saved checkpoint at epoch {epoch + 1}[/green]")
+        save_checkpoint(model, optimizer, epoch + 1, "./weights/model_mid_pre_train.pth") 
 
         # Generate text from prompts
         print("\n[bold cyan]Running inference on test prompts...[/bold cyan]\n")
@@ -264,15 +256,7 @@ for epoch in range(args.epochs):
             print(f"[green]Output:[/green] {generated_text}\n")
 
         model.train()  # Set back to training mode
-
-if not os.path.exists("weights"):
-    print("[yellow]creating a weights directory[/yellow]")
-    os.mkdir("weights")
-
-# Save final model
-torch.save(model.state_dict(), "./weights/model-final-save.pth")
-torch.save(optimizer.state_dict(), "./weights/optimizer-final-save.pth")
-print("[green]Saved final model weights[/green]")
+save_checkpoint(model, optimizer, args.epochs, "./weights/final_checkpoint.pth")
 
 if (args.wandb == True):
     wandb.finish()
