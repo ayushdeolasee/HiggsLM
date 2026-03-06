@@ -91,6 +91,9 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+
+total_time = 0.0
+
 assert args.max_lr > args.min_lr, "max_lr should be greater than min_lr"
 assert args.warmup_steps < args.epochs, "warmup_steps should be less than epochs"
 assert os.path.exists(args.data_root), f"data_root folder {args.data_root} does not exist"
@@ -225,6 +228,7 @@ for epoch in range(args.epochs):
             val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
         
     elapsed_time = end_time - start_time
+    total_time += elapsed_time 
     if (args.wandb == True): 
         wandb.log(
             {
@@ -244,7 +248,7 @@ for epoch in range(args.epochs):
     )
 
     if (epoch + 1) % 1000 == 0:
-        save_checkpoint(model, optimizer, epoch + 1, "./weights/model_mid_pre_train.pth") 
+        save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "/model_mid_pre_train.pth") 
 
         print("\n[bold cyan]Running inference on test prompts...[/bold cyan]\n")
         enc = tiktoken.get_encoding("gpt2")
@@ -272,7 +276,8 @@ for epoch in range(args.epochs):
             print(f"[green]Output:[/green] {generated_text}\n")
 
         model.train() 
-save_checkpoint(model, optimizer, args.epochs, "./weights/final_checkpoint.pth")
+save_checkpoint(model, optimizer, args.epochs, path="./weights", filename="model_final_pre_train.pth")
+print(f"[green]Training completed in {total_time:.2f} seconds. Average time per epoch: {(total_time / args.epochs):.2f}. Final checkpoint saved.[/green]")
 
 if (args.wandb == True):
     wandb.finish()
