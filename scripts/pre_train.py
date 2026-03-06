@@ -276,7 +276,7 @@ for epoch in range(args.epochs):
             print(f"[green]Output:[/green] {generated_text}\n")
 
         model.train() 
-save_checkpoint(model, optimizer, args.epochs, path="./weights", filename="model_final_pre_train.pth")
+save_checkpoint(model, optimizer, args.epochs, path="./weights", filename="pre_train.pth")
 print(f"[green]Training completed in {total_time:.2f} seconds. Average time per epoch: {(total_time / args.epochs):.2f}. Final checkpoint saved.[/green]")
 
 if (args.wandb == True):
