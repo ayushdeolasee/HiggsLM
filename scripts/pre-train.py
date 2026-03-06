@@ -5,6 +5,7 @@ import torch.nn as nn
 import argparse
 import tiktoken
 import torch.nn.functional as F
+import time
 
 from llm.dataloader import DataLoaderLite
 from llm.gpt import Model
@@ -145,6 +146,7 @@ model = Model(
 
 total_params = sum(p.numel() for p in model.parameters())
 trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+
 if (args.wandb == True):
     wandb.config.update(
         {"total_parameters": total_params, "trainable_parameters": trainable_params}
@@ -156,10 +158,13 @@ else:
     model = torch.compile(model)
     print("[green]Using compiled model[/green]")
 
+print(f"Total parameters: {total_params}, Trainable parameters: {trainable_params}")
+
 param_dict = [p for p in model.parameters()]
 param_dict = [p for p in param_dict if p.requires_grad]
 decay_params = [p for p in param_dict if p.dim() >= 2]
 nodecay_params = [p for p in param_dict if p.dim() < 2]
+
 optim_groups = [
     {"params": decay_params, "weight_decay": args.weight_decay},
     {"params": nodecay_params, "weight_decay": 0.0},
@@ -178,37 +183,48 @@ param_groups = [
         weight_decay=0.01,
     ),
 ]
-optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
 
+optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
 loss = nn.CrossEntropyLoss()
 
 for epoch in range(args.epochs):
+     
     optimizer.zero_grad()
     loss_acum = 0.0
+    
+    
+    start_time = time.perf_counter() 
     for micro_step in range(args.grad_accum_steps):
         x, y = train_dataloader.next_batch()
         x, y = x.to(device), y.to(device)
+        
         with torch.autocast(device_type=device, dtype=torch.bfloat16):
             output = model(x)
             train_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
+        
         train_loss = train_loss / args.grad_accum_steps
         loss_acum += train_loss.detach()
         train_loss.backward()
+    end_time = time.perf_counter()
 
     norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
     optimizer.step()
 
     lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.epochs, args.min_lr)
+    
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr
 
     with torch.no_grad():
+        
         x, y = val_dataloader.next_batch()
         x, y = x.to(device), y.to(device)
+       
         with torch.autocast(device_type=device, dtype=torch.bfloat16):
             output = model(x)
             val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
-
+        
+    elapsed_time = end_time - start_time
     if (args.wandb == True): 
         wandb.log(
             {
@@ -216,25 +232,25 @@ for epoch in range(args.epochs):
                 "val/loss": val_loss.item(),
                 "train/perplexity": torch.exp(loss_acum).item(),
                 "val/perplexity": torch.exp(val_loss).item(),
-                "training/epoch": epoch,
-                "training/learning_rate": lr,
-                "training/gradient_norm": norm.item(),
+                "train/elapsed_time": elapsed_time, 
+                "train/epoch": epoch,
+                "train/learning_rate": lr,
+                "train/gradient_norm": norm.item(),
             }
         )
 
     print(
-        f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr}"
+            f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
     )
 
-    # Save model checkpoint every 1000 epochs
     if (epoch + 1) % 1000 == 0:
         save_checkpoint(model, optimizer, epoch + 1, "./weights/model_mid_pre_train.pth") 
 
-        # Generate text from prompts
         print("\n[bold cyan]Running inference on test prompts...[/bold cyan]\n")
         enc = tiktoken.get_encoding("gpt2")
         model.eval()
 
+        # TODO: Use an actual eval test instead of these two hard-coded prompts  
         prompts = ["Photosynthesis is ", "3 + 7(5-7) is equal to "]
 
         for prompt in prompts:
@@ -243,9 +259,9 @@ for epoch in range(args.epochs):
             tokens = torch.tensor(tokens, dtype=torch.long).unsqueeze(0).to(device)
 
             with torch.no_grad():
-                for _ in range(50):  # Generate 50 tokens
+                for _ in range(50): 
                     logits = model(tokens)
-                    logits = logits[:, -1, :]  # Get last token logits
+                    logits = logits[:, -1, :]
                     probs = F.softmax(logits, dim=-1)
                     next_token = torch.multinomial(probs, num_samples=1)
                     tokens = torch.cat([tokens, next_token], dim=1)
@@ -255,7 +271,7 @@ for epoch in range(args.epochs):
             generated_text = enc.decode(tokens[0].tolist())
             print(f"[green]Output:[/green] {generated_text}\n")
 
-        model.train()  # Set back to training mode
+        model.train() 
 save_checkpoint(model, optimizer, args.epochs, "./weights/final_checkpoint.pth")
 
 if (args.wandb == True):
