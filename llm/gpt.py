@@ -83,13 +83,10 @@ class GroupedQueryAttention(nn.Module):
         self.values = nn.Linear(
             self.embed_dim, self.n_kv_head * (self.embed_dim // self.n_head)
         )
-        # self.keys = nn.Linear(self.embed_dim, self.n_head * self.embed_dim)
-        # self.values = nn.Linear(self.embed_dim, self.n_head * self.embed_dim)
         self.queries = nn.Linear(self.embed_dim, self.embed_dim)
 
         self.c_proj = nn.Linear(self.embed_dim, self.embed_dim)
         self.c_proj.GPT_SCALE_INIT = 1
-        # self.k_rope = RotaryPositionEmbedding(self.embed_dim // self.n_head, self.seq_length)
         self.rope = RotaryPositionEmbedding(self.head_dim, self.seq_length)
 
         self.alpha = nn.Parameter(torch.ones(self.n_head))
@@ -107,12 +104,11 @@ class GroupedQueryAttention(nn.Module):
         k = (
             keys.view(B, T, self.n_kv_head, self.head_dim)
             .transpose(1, 2)
-            .repeat_interleave(self.query_heads_per_kv, dim=1)
         )  # (B, nh, T, hs)
         v = (
             values.view(B, T, self.n_kv_head, self.head_dim)
             .transpose(1, 2)
-            .repeat_interleave(self.query_heads_per_kv, dim=1)
+            
         )  # (B, nh, T, hs)
         q = queries.view(B, T, self.n_head, self.head_dim).transpose(
             1, 2
@@ -127,7 +123,7 @@ class GroupedQueryAttention(nn.Module):
         q_scaled = q_hat * factor
         k = self.rope(k_hat)
         q = self.rope(q_scaled)
-        y = F.scaled_dot_product_attention(q, k, v, is_causal=True)
+        y = F.scaled_dot_product_attention(q, k, v, is_causal=True, enable_gqa=True)
         y = y.transpose(1, 2).contiguous().view(B, T, C)
         y = self.c_proj(y)
         return y
