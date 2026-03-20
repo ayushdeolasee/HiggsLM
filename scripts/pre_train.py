@@ -9,7 +9,7 @@ import time
 
 from llm.dataloader import DataLoaderLite
 from llm.gpt import Model
-from llm.optimizer import SingleDeviceMuonWithAuxAdam
+from llm.optimizer import MuonAdamW 
 from llm.lr import get_lr
 from llm.checkpoint_manager import save_checkpoint
 
@@ -134,6 +134,7 @@ if (args.wandb == True):
 train_dataloader = DataLoaderLite(
     B=args.batch_size, T=args.seq_length, split="train", data_root=args.data_root
 )
+
 val_dataloader = DataLoaderLite(
     B=args.batch_size, T=args.seq_length, split="val", data_root=args.data_root
 )
@@ -163,6 +164,16 @@ else:
 
 print(f"Total parameters: {total_params}, Trainable parameters: {trainable_params}")
 
+embedding_param = [p for p in model.embedding.parameters()]
+projection_params = [p for p in model.lm_linear.parameters()]
+block_params = [p for p in model.blocks.parameters() if p.ndim >= 2]
+hidden_gains_biases = [p for p in model.blocks.parameters() if p.ndim < 2]
+
+# TODO: add this as passable parameters
+matrix_lr = 1e-4
+weight_decay = 0.01 
+
+"""
 param_dict = [p for p in model.parameters()]
 param_dict = [p for p in param_dict if p.requires_grad]
 decay_params = [p for p in param_dict if p.dim() >= 2]
@@ -176,25 +187,24 @@ optim_groups = [
 hidden_weights = [p for p in model.blocks.parameters() if p.ndim >= 2]
 hidden_gains_biases = [p for p in model.blocks.parameters() if p.ndim < 2]
 nonhidden_params = [*model.lm_linear.parameters(), *model.embedding.parameters()]
+"""
+
 param_groups = [
-    dict(params=hidden_weights, use_muon=True, lr=0.02, weight_decay=0.01),
-    dict(
-        params=hidden_gains_biases + nonhidden_params,
-        use_muon=False,
-        lr=3e-4,
-        betas=(0.9, 0.95),
-        weight_decay=0.01,
-    ),
+    dict(kind="adamw", params=projection_params, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10), 
+    dict(kind="adamw", params=embedding_param, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10), 
+    dict(kind="adamw", params=hidden_gains_biases, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10) 
 ]
 
-optimizer = SingleDeviceMuonWithAuxAdam(param_groups)
+for shape in sorted({p.shape for p in block_params}):
+    group_params = [p for p in block_params if p.shape == shape]
+    param_groups.append(dict(kind='muon', params=group_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,))
+
+optimizer = MuonAdamW(param_groups)
 loss = nn.CrossEntropyLoss()
 
 for epoch in range(args.epochs):
-     
     optimizer.zero_grad()
     loss_acum = 0.0
-    
     
     start_time = time.perf_counter() 
     for micro_step in range(args.grad_accum_steps):
@@ -212,23 +222,24 @@ for epoch in range(args.epochs):
 
     norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
     optimizer.step()
-
+    elapsed_time = end_time - start_time
+    total_time += elapsed_time 
+    
     lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.epochs, args.min_lr)
     
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr
-
-    with torch.no_grad():
-        
-        x, y = val_dataloader.next_batch()
-        x, y = x.to(device), y.to(device)
+    
+    if epoch % 100 == 0:
+        with torch.no_grad():
+            x, y = val_dataloader.next_batch()
+            x, y = x.to(device), y.to(device)
        
-        with torch.autocast(device_type=device, dtype=torch.bfloat16):
-            output = model(x)
-            val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
+            with torch.autocast(device_type=device, dtype=torch.bfloat16):
+                output = model(x)
+                val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
         
-    elapsed_time = end_time - start_time
-    total_time += elapsed_time 
+    
     if (args.wandb == True): 
         wandb.log(
             {
@@ -248,7 +259,7 @@ for epoch in range(args.epochs):
     )
 
     if (epoch + 1) % 1000 == 0:
-        save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "/model_mid_pre_train.pth") 
+        save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "model_mid_pre_train.pth") 
 
         print("\n[bold cyan]Running inference on test prompts...[/bold cyan]\n")
         enc = tiktoken.get_encoding("gpt2")

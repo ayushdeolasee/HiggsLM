@@ -118,12 +118,8 @@ class GroupedQueryAttention(nn.Module):
         q_hat = q / (q_norm + 1e-6)
         k_hat = k / (k_norm + 1e-6)
 
-        factor = self.alpha * math.sqrt(C // self.n_head)
-        factor = factor.view(1, self.n_head, 1, 1)
-        q_scaled = q_hat * factor
-        k = self.rope(k_hat)
-        q = self.rope(q_scaled)
-        y = F.scaled_dot_product_attention(q, k, v, is_causal=True, enable_gqa=True)
+        factor = (self.alpha * math.sqrt(C // self.n_head)).view(1, self.n_head, 1, 1)
+        y = F.scaled_dot_product_attention(self.rope(q_hat * factor), self.rope(k_hat), v, is_causal=True, enable_gqa=True)
         y = y.transpose(1, 2).contiguous().view(B, T, C)
         y = self.c_proj(y)
         return y
@@ -202,8 +198,6 @@ class Model(nn.Module):
 
         self.rmsnrom3 = RMSNorm(self.embed_dim)
         self.lm_linear = nn.Linear(self.embed_dim, self.vocab_size)
-
-        self.lm_linear.weight = self.embedding.weight
 
         self.apply(self._init_weights)
 
