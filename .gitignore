@@ -1,12 +1,9 @@
-fineweb10B
-fineweb10B-edu
+data
+HiggsLM.egg-info
 weights
 models
 wandb
 experiments
-logs
 .DS_Store
-data
 __pycache__
-.kaggle
 .idea
