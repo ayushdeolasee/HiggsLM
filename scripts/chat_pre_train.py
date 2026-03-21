@@ -72,10 +72,14 @@ model = Model(
     query_heads_per_kv=args.query_heads_per_kv,
 ).to(device)
 
-model.load_state_dict(torch.load(args.model_path, map_location=device)["model_state_dict"])
+model = torch.compile(model)
+
+checkpoint = torch.load(args.model_path, weights_only=True)
+model.load_state_dict(checkpoint["model_state_dict"])
 tokenizer = tiktoken.get_encoding("gpt2")
 prompt_tokens = torch.tensor(tokenizer.encode(args.prompt)).unsqueeze(0).to(device)
 
+model.eval()
 for _ in range(args.num_tokens_to_generate):
     with torch.no_grad():
         logits = model(prompt_tokens)

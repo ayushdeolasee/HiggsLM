@@ -7,6 +7,7 @@ experiments
 logs
 .DS_Store
 data
+llm/__pycache__
 __pycache__
-.kaggle
+kaggle
 .idea
