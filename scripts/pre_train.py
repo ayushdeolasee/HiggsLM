@@ -10,7 +10,7 @@ import time
 from llm.dataloader import DataLoaderLite
 from llm.gpt import Model
 from llm.optimizer import MuonAdamW 
-from llm.lr import get_lr
+from llm.lr import get_lr, get_muon_momentum, get_weight_decay
 from llm.checkpoint_manager import save_checkpoint
 
 parser = argparse.ArgumentParser(description="Run the pre-training script")
@@ -156,9 +156,8 @@ if (args.wandb == True):
         {"total_parameters": total_params, "trainable_parameters": trainable_params}
     )
     wandb.watch(model, log="all", log_freq=100)
-if device == "mps":
-    pass
-else:
+
+if device == "cuda":
     if args.use_checkpointing: 
         torch._dynamo.config.activation_memory_budget = 0.5
         model = torch.compile(model)
@@ -177,22 +176,6 @@ hidden_gains_biases = [p for p in model.blocks.parameters() if p.ndim < 2]
 # TODO: add this as passable parameters
 matrix_lr = 1e-4
 weight_decay = 0.01 
-
-"""
-param_dict = [p for p in model.parameters()]
-param_dict = [p for p in param_dict if p.requires_grad]
-decay_params = [p for p in param_dict if p.dim() >= 2]
-nodecay_params = [p for p in param_dict if p.dim() < 2]
-
-optim_groups = [
-    {"params": decay_params, "weight_decay": args.weight_decay},
-    {"params": nodecay_params, "weight_decay": 0.0},
-]
-
-hidden_weights = [p for p in model.blocks.parameters() if p.ndim >= 2]
-hidden_gains_biases = [p for p in model.blocks.parameters() if p.ndim < 2]
-nonhidden_params = [*model.lm_linear.parameters(), *model.embedding.parameters()]
-"""
 
 param_groups = [
     dict(kind="adamw", params=projection_params, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10), 
@@ -231,7 +214,16 @@ for epoch in range(args.epochs):
     total_time += elapsed_time 
     
     lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.epochs, args.min_lr)
+    muon_momentum = get_muon_momentum(epoch)
+    muon_weight_decay = get_weight_decay(epoch)
+   
+    for group in optimizer.param_groups:
+        group["lr"] = group["initial_lr"] * lr
+        if group['kind'] == 'muon':
+            group["momentum"] = muon_momentum
+            group["weight_decay"] = muon_weight_decay
     
+
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr
     
