@@ -47,7 +47,7 @@ parser.add_argument(
 parser.add_argument(
     "--data_root",
     type=str,
-    default="../data",
+    default="./data",
     help="Folder for the data used for training",
 )
 parser.add_argument(
@@ -89,9 +89,9 @@ parser.add_argument(
 parser.add_argument(
     "--wandb", action=argparse.BooleanOptionalAction, help="Whether to use wandb for logging"
 )
+parser.add_argument("--use_checkpointing", type=bool, default=False, help="Use checkpointing to trade vram usage for compute")
 
 args = parser.parse_args()
-
 total_time = 0.0
 
 assert args.max_lr > args.min_lr, "max_lr should be greater than min_lr"
@@ -159,8 +159,13 @@ if (args.wandb == True):
 if device == "mps":
     pass
 else:
-    model = torch.compile(model)
-    print("[green]Using compiled model[/green]")
+    if args.use_checkpointing: 
+        torch._dynamo.config.activation_memory_budget = 0.5
+        model = torch.compile(model)
+        print("[green]Using compiled model with activation_memory_budget of 0.5[/green]")
+    else:
+        model = torch.compile(model)
+        print("[green]Using compiled model[/green]")
 
 print(f"Total parameters: {total_params}, Trainable parameters: {trainable_params}")
 
