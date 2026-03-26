@@ -90,6 +90,7 @@ parser.add_argument(
     "--wandb", action=argparse.BooleanOptionalAction, help="Whether to use wandb for logging"
 )
 parser.add_argument("--use_checkpointing", action=argparse.BooleanOptionalAction, help="Use checkpointing to trade vram usage for compute")
+parser.add_argument("--matrix_lr", type=int, default=1e-4, help="Learning rate for the muon optimizer")
 
 args = parser.parse_args()
 total_time = 0.0
@@ -173,19 +174,15 @@ projection_params = [p for p in model.lm_linear.parameters()]
 block_params = [p for p in model.blocks.parameters() if p.ndim >= 2]
 hidden_gains_biases = [p for p in model.blocks.parameters() if p.ndim < 2]
 
-# TODO: add this as passable parameters
-matrix_lr = 1e-4
-weight_decay = 0.01 
-
 param_groups = [
-    dict(kind="adamw", params=projection_params, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10), 
-    dict(kind="adamw", params=embedding_param, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10), 
-    dict(kind="adamw", params=hidden_gains_biases, lr=3e-4, betas=(0.9, 0.95), weight_decay=0.01, eps=1e-10) 
+    dict(kind="adamw", params=projection_params, lr=args.learning_rate, betas=(0.9, 0.95), weight_decay=args.weight_decay, eps=1e-10), 
+    dict(kind="adamw", params=embedding_param, lr=args.learning_rate, betas=(0.9, 0.95), weight_decay=args.weight_decay, eps=1e-10), 
+    dict(kind="adamw", params=hidden_gains_biases, lr=args.learning_rate, betas=(0.9, 0.95), weight_decay=args.weight_decay, eps=1e-10) 
 ]
 
 for shape in sorted({p.shape for p in block_params}):
     group_params = [p for p in block_params if p.shape == shape]
-    param_groups.append(dict(kind='muon', params=group_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,))
+    param_groups.append(dict(kind='muon', params=group_params, lr=args.matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,))
 
 optimizer = MuonAdamW(param_groups)
 loss = nn.CrossEntropyLoss()
@@ -215,15 +212,18 @@ for epoch in range(args.epochs):
     
     lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.epochs, args.min_lr)
     muon_momentum = get_muon_momentum(epoch)
-    muon_weight_decay = get_weight_decay(epoch)
+    
+    #TODO: add the weight decay function 
+    # muon_weight_decay = get_weight_decay(epoch)
    
     for group in optimizer.param_groups:
-        group["lr"] = group["initial_lr"] * lr
+        #print(f"group: {group}") 
+        group["lr"] = group["lr"] * lr
         if group['kind'] == 'muon':
             group["momentum"] = muon_momentum
-            group["weight_decay"] = muon_weight_decay
+            # TODO:Add updating muon weight decay  
+            #group["weight_decay"] = muon_weight_decay
     
-
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr
     
