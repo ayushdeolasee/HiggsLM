@@ -182,7 +182,7 @@ param_groups = [
 
 for shape in sorted({p.shape for p in block_params}):
     group_params = [p for p in block_params if p.shape == shape]
-    param_groups.append(dict(kind='muon', params=group_params, lr=args.matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,))
+    param_groups.append(dict(kind='muon', params=group_params, lr=args.matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=args.weight_decay,))
 
 optimizer = MuonAdamW(param_groups)
 loss = nn.CrossEntropyLoss()
