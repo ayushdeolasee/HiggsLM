@@ -6,10 +6,8 @@ import logging
 log = logging.getLogger("rich")
 
 def load_tokens(filename):
-    npt = np.load(filename)
-    npt = npt.astype(np.int32)
-    ptt = torch.tensor(npt, dtype=torch.long)
-    return ptt
+    npt = np.load(filename, mmap_mode="r").astype(np.int32)
+    return torch.from_numpy(npt)
 
 class DataLoaderLite:
     def __init__(self, B, T, split, data_root):

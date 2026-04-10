@@ -18,5 +18,3 @@ def get_muon_momentum(it):
 # Weight decay scheduler for Muon optimizer (linearly decays to zero over the course of training)
 def get_weight_decay(it):
     return weight_decay_scaled * (1 - it / num_iterations)
-
-

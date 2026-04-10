@@ -12,6 +12,7 @@ from llm.gpt import Model
 from llm.optimizer import MuonAdamW 
 from llm.lr import get_lr, get_muon_momentum, get_weight_decay
 from llm.checkpoint_manager import save_checkpoint
+from llm.eval_manager import PreTrainModel, HellaSwag
 
 parser = argparse.ArgumentParser(description="Run the pre-training script")
 # TODO: Inconsitency in naming for num_heads and n_heads
@@ -254,36 +255,16 @@ for epoch in range(args.epochs):
     print(
             f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
     )
-
-    if (epoch + 1) % 1000 == 0:
+    # TODO Run evaluation for last epoch as well
+    if (epoch + 1) % 1000 == 0 or epoch == 0:
         save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "model_mid_pre_train.pth") 
-
-        print("\n[bold cyan]Running inference on test prompts...[/bold cyan]\n")
         enc = tiktoken.get_encoding("gpt2")
-        model.eval()
+        eval_model = PreTrainModel(model=model.eval(), tokenizer=enc, device=device, max_tokens=100)
 
-        # TODO: Use an actual eval test instead of these two hard-coded prompts  
-        prompts = ["Photosynthesis is ", "3 + 7(5-7) is equal to "]
-
-        for prompt in prompts:
-            print(f"[yellow]Prompt:[/yellow] {prompt}")
-            tokens = enc.encode(prompt)
-            tokens = torch.tensor(tokens, dtype=torch.long).unsqueeze(0).to(device)
-
-            with torch.no_grad():
-                for _ in range(50): 
-                    logits = model(tokens)
-                    logits = logits[:, -1, :]
-                    probs = F.softmax(logits, dim=-1)
-                    next_token = torch.multinomial(probs, num_samples=1)
-                    tokens = torch.cat([tokens, next_token], dim=1)
-                    if tokens.size(1) >= args.seq_length:
-                        break
-
-            generated_text = enc.decode(tokens[0].tolist())
-            print(f"[green]Output:[/green] {generated_text}\n")
-
+        print("\n[bold cyan]Running evals[/bold cyan]\n")
+        hella_swag = HellaSwag(model=eval_model)
         model.train() 
+
 save_checkpoint(model, optimizer, args.epochs, path="./weights", filename="pre_train.pth")
 print(f"[green]Training completed in {total_time:.2f} seconds. Average time per epoch: {(total_time / args.epochs):.2f}. Final checkpoint saved.[/green]")
 
