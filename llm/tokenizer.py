@@ -9,8 +9,8 @@ def tokenize(doc):
         tokens = [eot]
         tokens.extend(enc.encode_ordinary(doc["text"]))
         tokens_np = np.array(tokens)
-        tokens_np_uint16 = tokens_np.astype(np.uint16)
-        return tokens_np_uint16
+        tokens_np_uint32 = tokens_np.astype(np.uint32)
+        return tokens_np_uint32
 
 def tokenize_prompt(prompt):
     tokens = [eot]
@@ -23,7 +23,6 @@ def str_to_pre_train_tokens(prompt):
 
 def decode_tokens(tokens):
     return enc.decode(tokens)
-
 
 def write_datafile(filename, tokens_np):
     np.save(filename, tokens_np)

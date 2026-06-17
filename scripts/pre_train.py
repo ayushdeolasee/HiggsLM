@@ -91,11 +91,12 @@ parser.add_argument(
     "--wandb", action=argparse.BooleanOptionalAction, help="Whether to use wandb for logging"
 )
 parser.add_argument("--use_checkpointing", action=argparse.BooleanOptionalAction, help="Use checkpointing to trade vram usage for compute")
-parser.add_argument("--matrix_lr", type=int, default=1e-4, help="Learning rate for the muon optimizer")
-
+parser.add_argument("--muon_max_lr", type=int, default=1e-3, help="Maximum learning rate for Muon optimizer")
+parser.add_argument("--muon_min_lr", type=int, default=1e-4, help="Minimum learning rate for Muon optimizer")
 args = parser.parse_args()
 total_time = 0.0
 
+assert args.muon_max_lr > args.muon_min_lr, "muon_max_lr must be greater than muon_min_lr"
 assert args.max_lr > args.min_lr, "max_lr should be greater than min_lr"
 assert args.warmup_steps < args.epochs, "warmup_steps should be less than epochs"
 assert os.path.exists(args.data_root), f"data_root folder {args.data_root} does not exist"
@@ -117,6 +118,8 @@ if (args.wandb == True):
         "warmup_steps": args.warmup_steps,
         "max_lr": args.max_lr,
         "min_lr": args.min_lr,
+        "muon_max_lr": args.muon_max_lr,
+        "muon_min_lr": args.muon_min_lr,
         "data_root": args.data_root,
         "grad_accum_steps": args.grad_accum_steps,
         "vocab_size": args.vocab_size,
@@ -183,7 +186,8 @@ param_groups = [
 
 for shape in sorted({p.shape for p in block_params}):
     group_params = [p for p in block_params if p.shape == shape]
-    param_groups.append(dict(kind='muon', params=group_params, lr=args.matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=args.weight_decay,))
+    param_groups.append(dict(kind='muon', params=group_params, lr=args.muon_min_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=args.weight_decay,))
+
 
 optimizer = MuonAdamW(param_groups)
 loss = nn.CrossEntropyLoss()
@@ -211,23 +215,21 @@ for epoch in range(args.epochs):
     elapsed_time = end_time - start_time
     total_time += elapsed_time 
     
-    lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.epochs, args.min_lr)
+    adamw_lr = get_lr(epoch, args.warmup_steps, args.max_lr, args.epochs, args.min_lr)
+    muon_lr = get_lr(epoch, args.warmup_steps, args.muon_max_lr, args.epochs, args.muon_min_lr) 
     muon_momentum = get_muon_momentum(epoch)
     
     #TODO: add the weight decay function 
     # muon_weight_decay = get_weight_decay(epoch)
    
     for group in optimizer.param_groups:
-        #print(f"group: {group}") 
-        group["lr"] = group["lr"] * lr
+        group["lr"] = adamw_lr 
         if group['kind'] == 'muon':
-            group["momentum"] = muon_momentum
+            group["lr"] = muon_lr
+            
             # TODO:Add updating muon weight decay  
             #group["weight_decay"] = muon_weight_decay
-    
-    for param_group in optimizer.param_groups:
-        param_group["lr"] = lr
-    
+   
     if epoch % 100 == 0:
         with torch.no_grad():
             x, y = val_dataloader.next_batch()
