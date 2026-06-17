@@ -3,18 +3,16 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 
-
 class RMSNorm(nn.Module):
     def __init__(self, input_shape, eps=1e-6):
         super().__init__()
         self.g = nn.Parameter(torch.ones(input_shape))
-        self.b = nn.Parameter(torch.ones(input_shape))
         self.eps = eps
 
     def forward(self, x):
         rms = torch.sqrt(torch.mean(x**2, dim=-1, keepdim=True) + self.eps)
         output = x / rms
-        output = (output * self.g) + self.b
+        output = (output * self.g)
         return output
 
 
