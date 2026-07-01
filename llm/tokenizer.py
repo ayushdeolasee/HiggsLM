@@ -9,17 +9,16 @@ def tokenize(doc):
         tokens = [eot]
         tokens.extend(enc.encode_ordinary(doc["text"]))
         tokens_np = np.array(tokens)
-        tokens_np_uint32 = tokens_np.astype(np.uint32)
-        return tokens_np_uint32
+        return tokens_np.astype(np.long)
 
 def tokenize_prompt(prompt):
     tokens = [eot]
     tokens.extend(enc.encode_ordinary(prompt))
-    return np.array(tokens).astype(np.uint16)
+    return np.array(tokens).astype(np.long)
 
 def str_to_pre_train_tokens(prompt):
     tokens = tokenize_prompt(prompt) 
-    return torch.tensor(tokens, dtype=torch.int16).unsqueeze(0) 
+    return torch.tensor(tokens, dtype=torch.long).unsqueeze(0) 
 
 def decode_tokens(tokens):
     return enc.decode(tokens)
