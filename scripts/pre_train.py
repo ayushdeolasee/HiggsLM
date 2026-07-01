@@ -24,7 +24,7 @@ parser.add_argument(
     "--epochs", type=int, default=19083, help="Number of epochs for the training loop"
 )
 parser.add_argument(
-    "--learning_rate", type=int, default=3e-4, help="Base learning rate"
+    "--learning_rate", type=float, default=3e-4, help="Base learning rate"
 )
 parser.add_argument(
     "--warmup_steps",
@@ -32,16 +32,16 @@ parser.add_argument(
     default=750,
     help="Number of epochs for learning rate scheduler",
 )
-parser.add_argument("--lr", type=int, default=3e-4, help="Base learning rate")
+parser.add_argument("--lr", type=float, default=3e-4, help="Base learning rate")
 parser.add_argument(
     "--max_lr",
-    type=int,
+    type=float,
     default=3e-4,
     help="Maximum learning rate for learning rate scheduler",
 )
 parser.add_argument(
     "--min_lr",
-    type=int,
+    type=float,
     default=3e-5,
     help="Minimum learning rate for learning rate scheduler",
 )
@@ -62,7 +62,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--weight_decay",
-    type=int,
+    type=float,
     default=0.01,
     help="Weight decay constant used for the optimizer",
 )
@@ -91,8 +91,8 @@ parser.add_argument(
     "--wandb", action=argparse.BooleanOptionalAction, help="Whether to use wandb for logging"
 )
 parser.add_argument("--use_checkpointing", action=argparse.BooleanOptionalAction, help="Use checkpointing to trade vram usage for compute")
-parser.add_argument("--muon_max_lr", type=int, default=1e-3, help="Maximum learning rate for Muon optimizer")
-parser.add_argument("--muon_min_lr", type=int, default=1e-4, help="Minimum learning rate for Muon optimizer")
+parser.add_argument("--muon_max_lr", type=float, default=1e-3, help="Maximum learning rate for Muon optimizer")
+parser.add_argument("--muon_min_lr", type=float, default=1e-4, help="Minimum learning rate for Muon optimizer")
 args = parser.parse_args()
 total_time = 0.0
 
