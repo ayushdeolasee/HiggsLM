@@ -12,7 +12,7 @@ from llm.gpt import Model
 from llm.optimizer import MuonAdamW 
 from llm.lr import get_lr, get_muon_momentum, get_weight_decay
 from llm.checkpoint_manager import save_checkpoint
-from llm.eval_manager import PreTrainModel, HellaSwag
+from llm.eval_manager import Arc_Easy
 
 parser = argparse.ArgumentParser(description="Run the pre-training script")
 # TODO: Inconsitency in naming for num_heads and n_heads
@@ -257,15 +257,14 @@ for epoch in range(args.epochs):
     print(
             f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
     )
-    # TODO Run evaluation for last epoch as well
-    if (epoch + 1) % 1000 == 0 or epoch == 0:
+    # TODO Run evaluation for last epoch as well and remove running eval on the first epoch (this is only for testing)
+    if (epoch + 1) % 1000 == 0 or epoch == 0 or epoch == args.epochs - 1:
         save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "model_mid_pre_train.pth") 
-        enc = tiktoken.get_encoding("gpt2")
-        eval_model = PreTrainModel(model=model.eval(), tokenizer=enc, device=device, max_tokens=100)
-
         print("\n[bold cyan]Running evals[/bold cyan]\n")
-        hella_swag = HellaSwag(model=eval_model)
-        model.train() 
+        acuracy = Arc_Easy(data_dir="./data/eval", model=model, device=device, seq_length=args.seq_length)
+        print(f"Accuracy: {acuracy * 100:.2f}%")
+
+
 
 save_checkpoint(model, optimizer, args.epochs, path="./weights", filename="pre_train.pth")
 print(f"[green]Training completed in {total_time:.2f} seconds. Average time per epoch: {(total_time / args.epochs):.2f}. Final checkpoint saved.[/green]")

@@ -16,6 +16,11 @@ def tokenize_prompt(prompt):
     tokens.extend(enc.encode_ordinary(prompt))
     return np.array(tokens).astype(np.long)
 
+def tokenize_prompt_without_eot(prompt):
+    tokens = []
+    tokens.extend(enc.encode_ordinary(prompt))
+    return np.array(tokens).astype(np.long)
+
 def str_to_pre_train_tokens(prompt):
     tokens = tokenize_prompt(prompt) 
     return torch.tensor(tokens, dtype=torch.long).unsqueeze(0) 
@@ -25,4 +30,3 @@ def decode_tokens(tokens):
 
 def write_datafile(filename, tokens_np):
     np.save(filename, tokens_np)
-

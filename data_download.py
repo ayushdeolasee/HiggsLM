@@ -3,7 +3,7 @@ import numpy as np
 import os
 from tqdm import tqdm
 from rich import print
-from llm.tokenizer import tokenize, tokenize_prompt, write_datafile
+from llm.tokenizer import tokenize, tokenize_prompt, tokenize_prompt_without_eot, write_datafile
 import argparse
 import json
 
@@ -14,8 +14,8 @@ parser.add_argument("--fineweb_dataset", type=str, default="", help="Fineweb dat
 parser.add_argument("--streaming", type=bool, default=True, help="Stream dataset from huggingface")
 parser.add_argument("--shard_size", type=int, default=int(1e8))
 parser.add_argument("--directory", type=str, default="./data", help="directory to store the dataset")
-parser.add_argument("--download-eval-ds", type=bool, default=False, help="Download evaluation dataset (Arc-Easy) for evaluation of LLM.")
-parser.add_argument("--download-pre-train-ds", type=bool, default=False, help="Download pre-train dataset (Arc-Easy) for pre-training of LLM.")
+parser.add_argument("--download_eval_ds", type=bool, default=False, help="Download evaluation dataset (Arc-Easy) for evaluation of LLM.")
+parser.add_argument("--download_pre_train_ds", type=bool, default=False, help="Download pre-train dataset (Arc-Easy) for pre-training of LLM.")
 
 args = parser.parse_args()
 
@@ -128,37 +128,41 @@ def download_eval_ds():
         fw = load_dataset(
             "allenai/ai2_arc",
             name="ARC-Easy",
-            split="train",
+            split="test",
             streaming=True,
         )
     else:
         fw = load_dataset(
             "allenai/ai2_arc",
             name="ARC-Easy",
-            split="train",
+            split="test",
         )
 
-    for i in range(1024):
-        write_data = []
-        for content in enumerate(fw):
-            question = tokenize_prompt(str(content[1]["question"]))  # np.array
-            match content[1]["answerKey"]:
-                case "A":
-                    answer = 0
-                case "B":
-                    answer = 1
-                case "C":
-                    answer = 2
-                case "D":
-                    answer = 3
-            options = []
-            for option in content[1]["choices"]["text"]:
-                options.append(tokenize_prompt(str(option)).tolist())
-            write_data.append({"question": question.tolist(), "answer": answer, "options": options})
-        with open(f"{eval_data_dir}/{i+1}.json", "w") as f:
+    i = 0
+    write_data = []
+
+    for content in enumerate(fw):
+        question = str(content[1]["question"])
+        answer = content[1]["choices"]["label"].index(content[1]["answerKey"]) 
+
+        options = []
+        for option in content[1]["choices"]["text"]:
+            options.append(str(option))
+
+        write_data.append({"question": question, "answer": answer, "options": options})
+
+        if len(write_data) == 1024:
+            with open(f"{eval_data_dir}/{i}.json", "w") as f:
+                f.write(json.dumps(write_data))
+            i += 1
+            write_data = []
+
+    if write_data:
+        with open(f"{eval_data_dir}/{i}.json", "w") as f:
             f.write(json.dumps(write_data))
 
 if __name__ == "__main__":
+    print(f"downlaod_pre_train_ds: {args.download_pre_train_ds}, download_eval_ds: {args.download_eval_ds}")
     if os.path.exists(_resolve_path(args.directory)):
         print("Data directory exists")
     else:
@@ -167,9 +171,11 @@ if __name__ == "__main__":
 
     if args.download_pre_train_ds == True: 
         download_pre_train()
+
     if args.download_eval_ds == True:
         download_eval_ds()
-    if args.download_pre_train_ds == False & args.download_eval_ds == False:
+
+    if args.download_pre_train_ds == False and args.download_eval_ds == False:
         print("Downloading pre-train dataset and eval dataset")
         download_pre_train()
         download_eval_ds()

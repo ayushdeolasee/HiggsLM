@@ -9,6 +9,7 @@ def load_tokens(filename):
     npt = np.load(filename, mmap_mode="r").astype(np.int32)
     return torch.from_numpy(npt)
 
+# TODO: Use the pytorch DataLoader for efficiency
 class DataLoaderLite:
     def __init__(self, B, T, split, data_root):
         self.B = B
