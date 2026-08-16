@@ -210,6 +210,7 @@ for epoch in range(args.epochs):
 
     norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
     optimizer.step()
+    del output, x, y
     elapsed_time = end_time - start_time
     total_time += elapsed_time 
     
@@ -237,7 +238,15 @@ for epoch in range(args.epochs):
     #            output = model(x)
     #            val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
         
-    
+        # TODO Run evaluation for last epoch as well and remove running eval on the first epoch (this is only for testing)
+    if (epoch + 1) % 1000 == 0 or epoch == 0 or epoch == args.epochs - 1:
+        save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "model_mid_pre_train.pth") 
+        print("\n[bold cyan]Running evals[/bold cyan]\n")
+        acuracy = Arc_Easy(data_dir="./data/eval", model=model, device=device, seq_length=args.seq_length)
+        torch.cuda.empty_cache()
+        wandb.log({"eval/accuracy": acuracy, "eval/epoch": epoch + 1})
+        print(f"Accuracy: {acuracy * 100:.2f}%") 
+
     if (args.wandb == True): 
         wandb.log(
             {
@@ -257,14 +266,6 @@ for epoch in range(args.epochs):
             #f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
             f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]adamw lr[/bold turquoise4]: {adamw_lr} | [bold turquoise4]muon lr[/bold turquoise4]: {muon_lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
     )
-    # TODO Run evaluation for last epoch as well and remove running eval on the first epoch (this is only for testing)
-    if (epoch + 1) % 1000 == 0 or epoch == 0 or epoch == args.epochs - 1:
-        save_checkpoint(model, optimizer, epoch + 1, path="./weights", filename = "model_mid_pre_train.pth") 
-        print("\n[bold cyan]Running evals[/bold cyan]\n")
-        acuracy = Arc_Easy(data_dir="./data/eval", model=model, device=device, seq_length=args.seq_length)
-        print(f"Accuracy: {acuracy * 100:.2f}%")
-
-
 
 save_checkpoint(model, optimizer, args.epochs, path="./weights", filename="pre_train.pth")
 print(f"[green]Training completed in {total_time:.2f} seconds. Average time per epoch: {(total_time / args.epochs):.2f}. Final checkpoint saved.[/green]")
