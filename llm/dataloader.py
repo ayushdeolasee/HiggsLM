@@ -6,7 +6,7 @@ import logging
 log = logging.getLogger("rich")
 
 def load_tokens(filename):
-    npt = np.load(filename, mmap_mode="r").astype(np.int32)
+    npt = np.load(filename, mmap_mode="r", allow_pickle=True).astype(np.int32)
     return torch.from_numpy(npt)
 
 # TODO: Use the pytorch DataLoader for efficiency
@@ -14,7 +14,7 @@ class DataLoaderLite:
     def __init__(self, B, T, split, data_root):
         self.B = B
         self.T = T
-        assert split in {'train', 'val'}
+        #assert split in {'train', 'val'}
 
         data_root = data_root
         shards = os.listdir(data_root)
@@ -29,7 +29,6 @@ class DataLoaderLite:
         self.reset()
 
     def reset(self):
-        # state, init at shard zero
         self.current_shard = 0
         self.tokens = load_tokens(self.shards[self.current_shard])
         self.current_position = self.B * self.T

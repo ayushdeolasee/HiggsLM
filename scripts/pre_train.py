@@ -137,12 +137,10 @@ if (args.wandb == True):
     )
 
 train_dataloader = DataLoaderLite(
-    B=args.batch_size, T=args.seq_length, split="train", data_root=args.data_root
+    B=args.batch_size, T=args.seq_length, split="train", data_root=f"{args.data_root}/pre-train"
 )
 
-val_dataloader = DataLoaderLite(
-    B=args.batch_size, T=args.seq_length, split="val", data_root=args.data_root
-)
+#val_dataloader = DataLoaderLite(B=args.batch_size, T=args.seq_length, split="val", data_root=f"{args.data_root}/pre-train")
 
 model = Model(
     seq_length=args.seq_length,
@@ -230,32 +228,34 @@ for epoch in range(args.epochs):
             # TODO:Add updating muon weight decay  
             #group["weight_decay"] = muon_weight_decay
    
-    if epoch % 100 == 0:
-        with torch.no_grad():
-            x, y = val_dataloader.next_batch()
-            x, y = x.to(device), y.to(device)
-       
-            with torch.autocast(device_type=device, dtype=torch.bfloat16):
-                output = model(x)
-                val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
+    #if epoch % 100 == 0:
+    #    with torch.no_grad():
+    #        x, y = val_dataloader.next_batch()
+    #        x, y = x.to(device), y.to(device)
+    #   
+    #        with torch.autocast(device_type=device, dtype=torch.bfloat16):
+    #            output = model(x)
+    #            val_loss = loss(output.view(-1, output.size(-1)), y.view(-1))
         
     
     if (args.wandb == True): 
         wandb.log(
             {
                 "train/loss": loss_acum.item(),
-                "val/loss": val_loss.item(),
+                #"val/loss": val_loss.item(),
                 "train/perplexity": torch.exp(loss_acum).item(),
-                "val/perplexity": torch.exp(val_loss).item(),
+                #"val/perplexity": torch.exp(val_loss).item(),
                 "train/elapsed_time": elapsed_time, 
                 "train/epoch": epoch,
-                "train/learning_rate": lr,
+                "train/adamw_learning_rate": adamw_lr,
+                "train/muon_learning_rate": muon_lr,
                 "train/gradient_norm": norm.item(),
             }
         )
 
     print(
-            f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
+            #f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [magenta]Val Loss[/magenta]: {val_loss.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]lr[/bold turquoise4]: {lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
+            f"[purple]Epoch[/purple]: {epoch}| [blue]Train Loss[/blue]: {loss_acum.item()} | [bold cyan]Norm[/bold cyan]: {norm} | [bold turquoise4]adamw lr[/bold turquoise4]: {adamw_lr} | [bold turquoise4]muon lr[/bold turquoise4]: {muon_lr} | [bold yellow]Elapsed Time[/bold yellow]: {elapsed_time:.2f} seconds"
     )
     # TODO Run evaluation for last epoch as well and remove running eval on the first epoch (this is only for testing)
     if (epoch + 1) % 1000 == 0 or epoch == 0 or epoch == args.epochs - 1:
