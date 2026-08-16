@@ -197,7 +197,7 @@ for epoch in range(args.epochs):
     start_time = time.perf_counter() 
     for micro_step in range(args.grad_accum_steps):
         x, y = train_dataloader.next_batch()
-        x, y = x.to(device), y.to(device)
+        x, y = x.to(device), y.to(device, dtype=torch.long)
         
         with torch.autocast(device_type=device, dtype=torch.bfloat16):
             output = model(x)
