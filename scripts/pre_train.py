@@ -245,7 +245,7 @@ for epoch in range(args.epochs):
         acuracy = Arc_Easy(data_dir="./data/eval", model=model, device=device, seq_length=args.seq_length)
         torch.cuda.empty_cache()
         if (args.wandb == True): 
-            wandb.log({"eval/accuracy": acuracy, "eval/epoch": epoch + 1})
+            wandb.log({"eval/accuracy": acuracy})
         print(f"Accuracy: {acuracy * 100:.2f}%") 
 
     if (args.wandb == True): 
